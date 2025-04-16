@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="ChineseChess_AvaloniaMVVM.Views.StartWindowView"
+			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+			 x:DataType="vm:StartWindowViewModel"
+			 Background="Red">
+	<Design.DataContext>
+		<vm:StartWindowViewModel/>
+	</Design.DataContext>
+	<Grid RowDefinitions="0.5*, 3*,0.5*" ColumnDefinitions="0.5*,3*,0.5*">
+		<TextBlock Text="{Binding Greeting}" Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center"></TextBlock>
+		<uc:ChessBoardView x:Name="StartWindow" Grid.Row="1" Grid.Column="1"/>
+	</Grid>
+</UserControl>
