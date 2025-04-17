@@ -1,11 +1,10 @@
-using System.Linq;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using ChineseChess_AvaloniaMVVM.Views;
+using System.Linq;
 
 namespace ChineseChess_AvaloniaMVVM
 {

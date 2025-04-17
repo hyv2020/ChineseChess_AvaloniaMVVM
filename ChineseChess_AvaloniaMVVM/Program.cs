@@ -1,5 +1,6 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
+using Avalonia.ReactiveUI;
+using System;
 
 namespace ChineseChess_AvaloniaMVVM
 {
@@ -16,7 +17,8 @@ namespace ChineseChess_AvaloniaMVVM
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .WithInterFont()
+                .UseReactiveUI()
                 .LogToTrace();
+
     }
 }

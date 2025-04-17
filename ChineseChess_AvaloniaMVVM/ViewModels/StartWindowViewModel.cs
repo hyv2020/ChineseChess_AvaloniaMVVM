@@ -1,27 +1,26 @@
 ﻿using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
-    public partial class StartWindowViewModel: WindowViewModelBase
+    public partial class StartWindowViewModel : WindowViewModelBase
     {
-        public string Greeting { get; } = "Welcome to Avalonia! UserControl";
-        WindowViewModelBase _Board;
-        MainWindowViewModel Parent { get; }
-        public WindowViewModelBase Board
+        public string Greeting { get; } = "Welcome to Avalonia! Start Window";
+        public ICommand ToLocalGameWindowCommand { get; }
+        public ICommand ToNetworkGameWindowCommand { get; }
+
+        public StartWindowViewModel(MainWindowViewModel parent) : base(parent)
         {
-            get { return _Board; }
-            private set { this.RaiseAndSetIfChanged(ref _Board, value); }
+            ToLocalGameWindowCommand = ReactiveCommand.Create(ToLocalGameWindow);
+            ToNetworkGameWindowCommand = ReactiveCommand.Create(ToNetworkGameWindow);
         }
-        
-        public StartWindowViewModel(MainWindowViewModel parent)
+        protected virtual void ToLocalGameWindow()
         {
-            Parent = parent;
-            _Board = new ChessBoardViewModel();
+            Parent.ToLocalGameWindow();
+        }
+        protected virtual void ToNetworkGameWindow()
+        {
+            Parent.ToNetworkGameWindow();
         }
     }
 }

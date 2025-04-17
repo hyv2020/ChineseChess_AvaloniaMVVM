@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+    <Folder Include="UIControls\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\NetworkGameWindowView.axaml.cs">
+      <DependentUpon>NetworkGameWindowView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\StartWindowView.axaml.cs">
       <DependentUpon>StartWindowView.axaml</DependentUpon>
     </Compile>

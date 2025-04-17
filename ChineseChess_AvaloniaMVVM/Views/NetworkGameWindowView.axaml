@@ -1,0 +1,35 @@
+<UserControl
+    x:Class="ChineseChess_AvaloniaMVVM.Views.NetworkGameWindowView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM"
+    xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:NetworkGameWindowViewModel"
+    Background="Gray"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:LocalGameWindowViewModel />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="0.5*,3*,0.5*" RowDefinitions="0.5*, 3*,0.5*">
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Text="{Binding Message}"
+            TextAlignment="Center" />
+		<uc:ChessBoardView
+			Content="{Binding Board}"
+            x:Name="ChessBoard"
+            Grid.Row="1"
+            Grid.Column="1" />
+		<Button
+			Command="{Binding ToStartWindowCommand}"
+			Grid.Row="2"
+			Grid.Column="1">
+			Content="Main Window"
+		</Button>
+    </Grid>
+</UserControl>

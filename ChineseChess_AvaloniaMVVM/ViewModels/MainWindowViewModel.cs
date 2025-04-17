@@ -1,15 +1,14 @@
-﻿using DynamicData;
+﻿using Avalonia.Threading;
 using ReactiveUI;
-using System.Windows.Input;
 namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
         public string Greeting { get; } = "Welcome to Avalonia!";
         private WindowViewModelBase _CurrentWindow;
-        readonly WindowViewModelBase[] _Windows;
-        private int _currentIndex;
-        // The default is the first page
+        private StartWindowViewModel _StartWindowViewModel;
+        private LocalGameWindowViewModel _LocalGameWindowViewModel;
+        private NetworkGameWindowViewModel _NetworkGameWindowViewModel;
 
         /// <summary>
         /// Gets the current page. The property is read-only
@@ -19,11 +18,28 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             get { return _CurrentWindow; }
             private set { this.RaiseAndSetIfChanged(ref _CurrentWindow, value); }
         }
+
         public MainWindowViewModel()
         {
-            _Windows = new WindowViewModelBase[1] { new StartWindowViewModel(this) };
-            _currentIndex = 0;
-            _CurrentWindow = _Windows[_currentIndex];
+            _StartWindowViewModel = new StartWindowViewModel(this);
+            _LocalGameWindowViewModel = new LocalGameWindowViewModel(this);
+            _NetworkGameWindowViewModel = new NetworkGameWindowViewModel(this);
+            _CurrentWindow = _StartWindowViewModel;
+        }
+        public void ToStartWindow()
+        {
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                CurrentWindow = _StartWindowViewModel;
+            });
+        }
+        public void ToLocalGameWindow()
+        {
+            CurrentWindow = _LocalGameWindowViewModel;
+        }
+        public void ToNetworkGameWindow()
+        {
+            CurrentWindow = _NetworkGameWindowViewModel;
         }
     }
 }
