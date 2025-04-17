@@ -10,9 +10,13 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public int Y { get; }
         public bool IsValidMove { get; set; }
         public bool IsSelected { get; set; }
-        public Image BackgroundImage { get; }
         public string Value { get; set; }
-        public ChessPieceBase? ChessPiece { get; set; }
+        private ChessPieceBase? _ChessPiece;
+        public ChessPieceBase? ChessPiece { get=>_ChessPiece;
+            set { _ChessPiece = value;
+                OnChessPieceChanged();
+            }
+        }
         public bool IsEmpty => ChessPiece == null;
         protected CellBase(int x, int y, string value, ChessBoardBase chessBoard, PropertyChangedEventHandler postChessPieceMove)
         {
@@ -23,7 +27,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
             IsValidMove = false;
             IsSelected = false;
             PropertyChanged += postChessPieceMove;
-            BackgroundImage = GetBackgroundImage();
             ChessPiece = null;
         }
 
@@ -34,6 +37,9 @@ namespace ChineseChess_AvaloniaMVVM.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public abstract Image GetBackgroundImage();
+        public void OnChessPieceChanged()
+        {
+            PropertyChanged?.Invoke(ChessPiece, new PropertyChangedEventArgs(nameof(ChessPiece)));
+        }
     }
 }

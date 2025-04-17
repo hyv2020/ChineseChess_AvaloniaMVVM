@@ -4,9 +4,9 @@ using ChineseChess_AvaloniaMVVM.Models;
 using System.Diagnostics;
 namespace ChineseChess_AvaloniaMVVM.Views;
 
-public partial class ChessBoardView : UserControl
+public partial class ChessBoardUserControlView : UserControl
 {
-    public ChessBoardView()
+    public ChessBoardUserControlView()
     {
         InitializeComponent();
     }

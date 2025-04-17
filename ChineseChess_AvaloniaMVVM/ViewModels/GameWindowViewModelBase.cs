@@ -8,20 +8,20 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
     public abstract class GameWindowViewModelBase : WindowViewModelBase
     {
         public string Greeting { get; } = "Welcome to Avalonia! UserControl";
-        ChessBoardViewModel _Board;
+        ChessBoardUserControlViewModel _boardUserControl;
         public ICommand ToStartWindowCommand { get; }
         public MainWindowViewModel Parent { get; }
 
-        public ChessBoardViewModel Board
+        public ChessBoardUserControlViewModel BoardUserControl
         {
-            get { return _Board; }
-            private set { this.RaiseAndSetIfChanged(ref _Board, value); }
+            get { return _boardUserControl; }
+            private set { this.RaiseAndSetIfChanged(ref _boardUserControl, value); }
         }
 
         protected GameWindowViewModelBase(MainWindowViewModel parent) : base(parent)
         {
             Parent = parent;
-            _Board = new ChessBoardViewModel(PostChessPieceMove);
+            _boardUserControl = new ChessBoardUserControlViewModel(PostChessPieceMove);
             ToStartWindowCommand = ReactiveCommand.Create(ToStartWindow);
 
         }

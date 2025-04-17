@@ -3,24 +3,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ChineseChess_AvaloniaMVVM.Views.ChessBoardView"
+             x:Class="ChineseChess_AvaloniaMVVM.Views.ChessBoardUserControlView"
 			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
 			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
-			 x:DataType="vm:ChessBoardViewModel"
+			 x:DataType="vm:ChessBoardUserControlViewModel"
 			 Background="Yellow">
 	<Design.DataContext>
-		<vm:ChessBoardViewModel/>
+		<vm:ChessBoardUserControlViewModel/>
 	</Design.DataContext>
 
 	<Grid x:Name="cb">
-		<ItemsControl ItemsSource="{Binding Grid}"
+		<ItemsControl ItemsSource="{Binding GridVm}"
 					  HorizontalAlignment="Center"
 					  VerticalAlignment="Center">
 			<!-- Set the DataTemplate -->
 			<ItemsControl.ItemTemplate>
-				<DataTemplate DataType="models:CellBase">
+				<DataTemplate DataType="vm:CellViewModel">
 					<Rectangle Fill="Black"
-					   DataContext="{Binding Value}"
 					   Margin="10"
 					   Width="20"
 					   Height="20"

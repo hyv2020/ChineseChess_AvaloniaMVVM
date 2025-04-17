@@ -19,8 +19,8 @@
             Grid.ColumnSpan="3"
             Text="{Binding Message}"
             TextAlignment="Center" />
-		<uc:ChessBoardView
-			Content="{Binding Board}"
+		<uc:ChessBoardUserControlView
+			Content="{Binding BoardUserControl}"
             x:Name="ChessBoard"
             Grid.Row="1"
             Grid.Column="1" />

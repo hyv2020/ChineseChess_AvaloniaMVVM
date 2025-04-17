@@ -19,10 +19,5 @@ namespace ChineseChess_AvaloniaMVVM.Models
             ChessBoard.SelectedCell = this;
         }
 
-        public override Image GetBackgroundImage()
-        {
-            Image backgroundImage = null;
-            return backgroundImage;
-        }
     }
 }

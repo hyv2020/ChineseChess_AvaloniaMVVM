@@ -1,31 +1,23 @@
-﻿using ChineseChess_AvaloniaMVVM.Models;
-using ReactiveUI;
-using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Avalonia.Controls;
+using ChineseChess_AvaloniaMVVM.Models;
+using Tmds.DBus.Protocol;
 
-namespace ChineseChess_AvaloniaMVVM.ViewModels
+namespace ChineseChess_AvaloniaMVVM.ViewModels;
+
+public class ChessBoardViewModel
 {
-    public partial class ChessBoardViewModel : ViewModelBase
+    private ChessBoardBase ChessBoard { get; }
+    public List<CellViewModel> GridVm { get; private set; }
+    public int RowCount => ChessBoard.RowCount;
+    public ChessBoardViewModel(ChessBoardBase chessBoard)
     {
-        public string Message { get; } = "Chessboard";
-        private ChessBoardBase _ChineseClassBoard;
-        public ChessBoardBase ChineseClassBoard
+        ChessBoard = chessBoard;
+        GridVm = new();
+        foreach (var cell in ChessBoard.GridArr)
         {
-            get { return _ChineseClassBoard; }
-            set { this.RaiseAndSetIfChanged(ref _ChineseClassBoard, value); }
+            GridVm.Add(new CellViewModel(cell));
         }
-        public int RowCount
-        {
-            get { return _ChineseClassBoard.RowCount; }
-        }
-        public CellBase[] Grid
-        {
-            get { return _ChineseClassBoard.GridArr; }
-        }
-        public ChessBoardViewModel(PropertyChangedEventHandler postChessPieceMove)
-        {
-            _ChineseClassBoard = new ChineseChessBoard(postChessPieceMove);
-        }
-
-
     }
 }
