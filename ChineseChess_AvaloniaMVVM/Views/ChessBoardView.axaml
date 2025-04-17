@@ -5,12 +5,34 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ChineseChess_AvaloniaMVVM.Views.ChessBoardView"
 			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
 			 x:DataType="vm:ChessBoardViewModel"
 			 Background="Yellow">
 	<Design.DataContext>
 		<vm:ChessBoardViewModel/>
 	</Design.DataContext>
-	<Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
-		<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Message}" TextAlignment="Center" Background="Blue" Foreground="White" Padding="10"/>
+
+	<Grid x:Name="cb">
+		<ItemsControl ItemsSource="{Binding Grid}"
+					  HorizontalAlignment="Center"
+					  VerticalAlignment="Center">
+			<!-- Set the DataTemplate -->
+			<ItemsControl.ItemTemplate>
+				<DataTemplate DataType="models:CellBase">
+					<Rectangle Fill="Black"
+					   DataContext="{Binding Value}"
+					   Margin="10"
+					   Width="20"
+					   Height="20"
+					   PointerPressed="Rectangle_PointerPressed"/>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+			<!-- Use a custom ItemsPanel to get 8 items in a row -->
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Columns="{Binding RowCount}" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
 	</Grid>
 </UserControl>
