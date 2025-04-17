@@ -7,6 +7,7 @@
 			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
 			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
 			 x:DataType="vm:ChessBoardUserControlViewModel"
+			 
 			 Background="Yellow">
 	<Design.DataContext>
 		<vm:ChessBoardUserControlViewModel/>
@@ -20,6 +21,7 @@
 			<ItemsControl.ItemTemplate>
 				<DataTemplate DataType="vm:CellViewModel">
 					<Rectangle Fill="Black"
+					DataContext="{Binding Cell}"
 					   Margin="10"
 					   Width="20"
 					   Height="20"

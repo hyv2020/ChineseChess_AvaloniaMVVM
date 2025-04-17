@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace ChineseChess_AvaloniaMVVM.Models
 {
@@ -12,12 +11,15 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public bool IsSelected { get; set; }
         public string Value { get; set; }
         private ChessPieceBase? _ChessPiece;
-        public ChessPieceBase? ChessPiece { get=>_ChessPiece;
-            set { _ChessPiece = value;
+        public ChessPieceBase? ChessPiece
+        {
+            get => _ChessPiece;
+            set
+            {
+                _ChessPiece = value;
                 OnChessPieceChanged();
             }
         }
-        public bool IsEmpty => ChessPiece == null;
         protected CellBase(int x, int y, string value, ChessBoardBase chessBoard, PropertyChangedEventHandler postChessPieceMove)
         {
             ChessBoard = chessBoard;

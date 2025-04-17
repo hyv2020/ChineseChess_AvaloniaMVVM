@@ -18,7 +18,7 @@ public partial class ChessBoardUserControlView : UserControl
         var rectangle = sender as Rectangle;
         if (rectangle != null)
         {
-            var cellData = rectangle.Parent.DataContext as CellBase; // Assuming CellBase is your data model
+            var cellData = rectangle.DataContext as CellBase; // Assuming CellBase is your data model
             // Get the cell index from the rectangle's name
             // Perform some action with the cell index
             Debug.WriteLine($"Cell clicked! X: {cellData.X}, Y: {cellData.Y}");

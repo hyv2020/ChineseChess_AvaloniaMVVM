@@ -1,18 +1,19 @@
-using System.ComponentModel;
 using Avalonia.Controls;
 using ChineseChess_AvaloniaMVVM.Models;
-using DynamicData.Binding;
+using System.ComponentModel;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
 public class CellViewModel
 {
-    private CellBase Cell { get; }
+    public CellBase Cell { get; }
     public Image BackgroundImage { get; }
-    public int X=>Cell.X;
+    public int X => Cell.X;
     public int Y => Cell.Y;
     private ChessPieceViewModel? _ChessPieceVm;
-    public ChessPieceViewModel? ChessPieceVm{get => _ChessPieceVm;}
+    public ChessPieceViewModel? ChessPieceVm { get => _ChessPieceVm; }
+    public bool IsEmpty => ChessPieceVm == null;
+
     public CellViewModel(CellBase cell)
     {
         Cell = cell;
@@ -20,7 +21,7 @@ public class CellViewModel
         _ChessPieceVm = null;
         cell.PropertyChanged += ChessPiece_PropertyChanged;
     }
-    
+
     private Image GetBackgroundImage()
     {
         Image backgroundImage = null;
@@ -32,7 +33,7 @@ public class CellViewModel
         var chessPiece = sender as ChessPieceBase;
         if (chessPiece != null)
         {
-            if(chessPiece != null)
+            if (chessPiece != null)
             {
                 _ChessPieceVm = new ChessPieceViewModel(chessPiece);
             }
@@ -41,6 +42,14 @@ public class CellViewModel
                 _ChessPieceVm = null;
             }
         }
-        
+
+    }
+    public void ResolveMove()
+    {
+        Cell.ResolveMove();
+    }
+    public void OnPropertyChanged(string propertyName)
+    {
+        Cell.OnPropertyChanged(propertyName);
     }
 }
