@@ -7,8 +7,9 @@
 			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
 			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
 			 x:DataType="vm:ChessBoardUserControlViewModel"
-			 
-			 Background="Yellow">
+			     xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM"
+
+			 Background="Violet">
 	<Design.DataContext>
 		<vm:ChessBoardUserControlViewModel/>
 	</Design.DataContext>
@@ -20,15 +21,10 @@
 			<!-- Set the DataTemplate -->
 			<ItemsControl.ItemTemplate>
 				<DataTemplate DataType="vm:CellViewModel">
-					<Rectangle Fill="Black"
-					DataContext="{Binding Cell}"
-					   Margin="10"
-					   Width="20"
-					   Height="20"
-					   PointerPressed="Rectangle_PointerPressed"/>
+					<uc:CellView Content="{Binding Self}"/>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
-			<!-- Use a custom ItemsPanel to get 8 items in a row -->
+			<!-- Use a custom ItemsPanel to get col items in a row -->
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<UniformGrid Columns="{Binding RowCount}" />

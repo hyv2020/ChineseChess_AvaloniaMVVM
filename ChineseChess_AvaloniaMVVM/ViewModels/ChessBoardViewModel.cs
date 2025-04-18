@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Avalonia.Controls;
 using ChineseChess_AvaloniaMVVM.Models;
-using Tmds.DBus.Protocol;
+using System.Collections.Generic;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
@@ -17,7 +14,15 @@ public class ChessBoardViewModel
         GridVm = new();
         foreach (var cell in ChessBoard.GridArr)
         {
-            GridVm.Add(new CellViewModel(cell));
+            GridVm.Add(new CellViewModel(cell, this));
+        }
+    }
+    public void ClearAllValidMoves()
+    {
+        foreach (var cell in GridVm)
+        {
+            cell.IsValidMove = false;
+            cell.CellBase.IsSelected = false;
         }
     }
 }

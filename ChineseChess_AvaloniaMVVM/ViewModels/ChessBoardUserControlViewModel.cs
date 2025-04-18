@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using ChineseChess_AvaloniaMVVM.Models;
+﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
 using ReactiveUI;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels
@@ -25,7 +24,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public ChessBoardUserControlViewModel(PropertyChangedEventHandler postChessPieceMove)
         {
-            var board =new ChineseChessBoard(postChessPieceMove);
+            var board = new ChineseChessBoard(postChessPieceMove);
             _ChineseClassBoard = new ChessBoardViewModel(board);
         }
 

@@ -7,7 +7,14 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public ChessBoardBase ChessBoard { get; }
         public int X { get; }
         public int Y { get; }
-        public bool IsValidMove { get; set; }
+        private bool _IsValidMove;
+        public bool IsValidMove
+        {
+            get => _IsValidMove; set
+            {
+                _IsValidMove = value; OnPropertyChanged(nameof(IsValidMove));
+            }
+        }
         public bool IsSelected { get; set; }
         public string Value { get; set; }
         private ChessPieceBase? _ChessPiece;
@@ -26,7 +33,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
             X = x;
             Y = y;
             Value = value;
-            IsValidMove = false;
+            IsValidMove = true;
             IsSelected = false;
             PropertyChanged += postChessPieceMove;
             ChessPiece = null;

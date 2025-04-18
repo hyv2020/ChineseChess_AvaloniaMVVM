@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="66" d:DesignHeight="66"
+             x:Class="ChineseChess_AvaloniaMVVM.Views.CellView"
+			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+			 x:DataType="vm:CellViewModel"
+			 x:CompileBindings="True">
+	<Design.DataContext>
+		<vm:CellViewModel />
+	</Design.DataContext>
+	<Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+		<Image x:Name="CellBackground"
+			   Source="{Binding BackgroundImage}"
+						   Width="{Binding Width}"
+						   Height="{Binding Height}"
+			   Grid.ColumnSpan="3"
+			   Grid.RowSpan="3"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"
+						   ZIndex="0"
+						   PointerPressed="ChessBoardBackground_PointerPressed"/>
+		<Image x:Name="ChessPiece"
+			Source="{Binding ChessPieceImage}"
+			   DataContext="{Binding ChessPieceVm}"
+			   Width="20"
+			   Height="20"
+			   Grid.ColumnSpan="3"
+			   Grid.RowSpan="3"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
+			   ZIndex="1"
+			   PointerPressed="ChessPiece_PointerPressed"/>
+		<Rectangle
+			x:Name="ValidMoveImage"
+			Fill="Black"
+		DataContext="{Binding CellBase}"
+			IsVisible="{Binding IsValidMove}"
+		   Width="20"
+		   Height="20"
+			Grid.Column="1"
+			Grid.Row="1"
+				   ZIndex="2"
+		   PointerPressed="ValidMove_PointerPressed"/>
+	</Grid>
+</UserControl>

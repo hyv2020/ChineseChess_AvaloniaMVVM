@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel;
 
-namespace ChineseChess_AvaloniaMVVM.Models
+namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 {
     public class ChineseChessBoard : ChessBoardBase
     {
-        public ChineseChessBoard(PropertyChangedEventHandler postChessPieceMove, int rows = 10, int cols = 10) : base(rows, cols, postChessPieceMove)
+        public ChineseChessBoard(PropertyChangedEventHandler postChessPieceMove, int rows = 9, int cols = 9) : base(rows, cols, postChessPieceMove)
         {
         }
         public override CellBase[][] InitialiseGrid(int rows, int cols, PropertyChangedEventHandler postChessPieceMove)
         {
-            // Initialize a 10x10 grid
+            // Initialize a 9x9 grid
             var grid = new CellBase[cols][];
             for (int i = 0; i < cols; i++)
             {

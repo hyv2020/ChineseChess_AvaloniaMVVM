@@ -1,12 +1,14 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using ChineseChess_AvaloniaMVVM.Models;
+using ChineseChess_AvaloniaMVVM.ViewModels;
 using System.Diagnostics;
+
 namespace ChineseChess_AvaloniaMVVM.Views;
 
-public partial class ChessBoardUserControlView : UserControl
+public partial class CellView : UserControl
 {
-    public ChessBoardUserControlView()
+    public CellView()
     {
         InitializeComponent();
     }
@@ -16,6 +18,9 @@ public partial class ChessBoardUserControlView : UserControl
         var background = sender as Image;
         if (background != null)
         {
+            var cell = background.DataContext as CellViewModel;
+            var board = cell.ChessBoard;
+            board.ClearAllValidMoves();
             // Handle the background click event here
             // For example, you can clear the selected cell or perform some action
             Debug.WriteLine("Background clicked!");
@@ -37,7 +42,7 @@ public partial class ChessBoardUserControlView : UserControl
             Debug.WriteLine($"Cell clicked! X: {cellData.X}, Y: {cellData.Y}");
             Debug.WriteLine($"");
             cellData.ResolveMove();
-            cellData.OnPropertyChanged(nameof(cellData));
+            //cellData.OnPropertyChanged(nameof(cellData));
         }
     }
     private void ChessPiece_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
