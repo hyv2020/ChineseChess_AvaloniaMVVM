@@ -1,4 +1,5 @@
-﻿using GameCommons;
+﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
+using GameCommons;
 using System.ComponentModel;
 
 namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
@@ -15,12 +16,38 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
             Side = (y > 4) ? Side.Red : Side.Black;
 
         }
-
+        public ChineseChessCell()
+        {
+            // Empty constructor for serialization
+        }
         public override void ResolveMove()
         {
             var previousCell = ChessBoard.SelectedCell;
             ChessBoard.SelectedCell = this;
         }
 
+        public override string ToSaveCode()
+        {
+            if (this.ChessPiece is null)
+            {
+                return "0";
+            }
+            else
+            {
+                return $"{(int)this.ChessPiece.Side}{(int)GetChessPiece().GetChessPieceType()}";
+            }
+        }
+
+        public override ChineseChessPieceBase? GetChessPiece()
+        {
+            if (this.ChessPiece is null)
+            {
+                return null;
+            }
+            else
+            {
+                return (ChineseChessPieceBase)this.ChessPiece;
+            }
+        }
     }
 }

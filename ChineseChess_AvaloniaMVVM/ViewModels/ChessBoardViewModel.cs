@@ -7,7 +7,7 @@ public class ChessBoardViewModel
 {
     private ChessBoardBase ChessBoard { get; }
     public List<CellViewModel> GridVm { get; private set; }
-    public int RowCount => ChessBoard.RowCount;
+    public int ColumnCount => ChessBoard.ColumnCount;
     public ChessBoardViewModel(ChessBoardBase chessBoard)
     {
         ChessBoard = chessBoard;
@@ -24,5 +24,17 @@ public class ChessBoardViewModel
             cell.IsValidMove = false;
             cell.CellBase.IsSelected = false;
         }
+    }
+    public void ClearBoard()
+    {
+        ChessBoard.ClearBoard();
+    }
+    public void LoadGame(List<string> matchData = null)
+    {
+        ChessBoard.LoadGame(matchData);
+    }
+    public void SaveGame()
+    {
+        ChessBoard.SaveGame();
     }
 }

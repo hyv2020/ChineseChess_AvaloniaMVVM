@@ -16,6 +16,10 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type
         public Horse(Horse horse, ChineseChessCell cell) : base(horse, cell)
         {
         }
+        public Horse()
+        {
+            // Empty constructor for serialization
+        }
         public override IEnumerable<ChineseChessCell> FindValidMove()
         {
             List<ChineseChessCell> availableCells = new();

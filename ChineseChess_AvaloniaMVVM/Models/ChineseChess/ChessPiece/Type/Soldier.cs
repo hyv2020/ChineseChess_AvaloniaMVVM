@@ -15,6 +15,10 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type
         public Soldier(Soldier soldier, ChineseChessCell cell) : base(soldier, cell)
         {
         }
+        public Soldier()
+        {
+            // Empty constructor for serialization
+        }
         public override IEnumerable<ChineseChessCell> FindValidMove()
         {
             List<ChineseChessCell> availableCells = new();

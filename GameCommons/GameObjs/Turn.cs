@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using GameCommons.GameObjs;
 
 namespace GameCommons
 {
     [Serializable]
-    public class Turn
+    public class Turn : IBoardStatus
     {
         public readonly int TurnNumber;
         public readonly Side WhosTurn;

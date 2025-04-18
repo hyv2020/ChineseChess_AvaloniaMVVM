@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
+using Avalonia.Input;
 using ChineseChess_AvaloniaMVVM.Models;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ public partial class CellView : UserControl
         InitializeComponent();
     }
 
-    private void ChessBoardBackground_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
+    private void ChessBoardBackground_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         var background = sender as Image;
         if (background != null)
@@ -29,7 +30,7 @@ public partial class CellView : UserControl
 
     }
 
-    private void ValidMove_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
+    private void ValidMove_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         // Handle the rectangle click event here
         // For example, you can update the cell value or perform some action
@@ -45,7 +46,7 @@ public partial class CellView : UserControl
             //cellData.OnPropertyChanged(nameof(cellData));
         }
     }
-    private void ChessPiece_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
+    private void ChessPiece_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         var chessPiece = sender as Image;
         if (chessPiece != null)

@@ -8,26 +8,33 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
     public partial class ChessBoardUserControlViewModel : ViewModelBase
     {
         public string Message { get; } = "Chessboard";
-        private ChessBoardViewModel _ChineseClassBoard;
-        public ChessBoardViewModel ChineseClassBoard
+        private ChessBoardViewModel _chessBoardVm;
+        public ChessBoardViewModel ChessBoardVm
         {
-            get { return _ChineseClassBoard; }
-            set { this.RaiseAndSetIfChanged(ref _ChineseClassBoard, value); }
+            get { return _chessBoardVm; }
+            set { this.RaiseAndSetIfChanged(ref _chessBoardVm, value); }
         }
-        public int RowCount
+        public int ColumnCount
         {
-            get { return _ChineseClassBoard.RowCount; }
+            get { return _chessBoardVm.ColumnCount; }
         }
         public List<CellViewModel> GridVm
         {
-            get { return _ChineseClassBoard.GridVm; }
+            get { return _chessBoardVm.GridVm; }
         }
         public ChessBoardUserControlViewModel(PropertyChangedEventHandler postChessPieceMove)
         {
             var board = new ChineseChessBoard(postChessPieceMove);
-            _ChineseClassBoard = new ChessBoardViewModel(board);
+            _chessBoardVm = new ChessBoardViewModel(board);
+        }
+        public void ClearAllValidMoves()
+        {
+            _chessBoardVm.ClearAllValidMoves();
         }
 
-
+        public void ClearBoard()
+        {
+            _chessBoardVm.ClearBoard();
+        }
     }
 }

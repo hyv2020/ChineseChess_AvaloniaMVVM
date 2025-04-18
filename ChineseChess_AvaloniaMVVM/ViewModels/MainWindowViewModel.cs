@@ -35,10 +35,12 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public void ToLocalGameWindow()
         {
+            _LocalGameWindowViewModel.Reset();
             CurrentWindow = _LocalGameWindowViewModel;
         }
         public void ToNetworkGameWindow()
         {
+            _NetworkGameWindowViewModel.Reset();
             CurrentWindow = _NetworkGameWindowViewModel;
         }
     }

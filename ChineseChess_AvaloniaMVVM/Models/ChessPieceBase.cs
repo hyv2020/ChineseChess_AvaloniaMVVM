@@ -1,5 +1,6 @@
 ﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
 using GameCommons;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace ChineseChess_AvaloniaMVVM.Models
@@ -11,6 +12,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public readonly int Y;
         public readonly Side Side;
         public bool CanMove { get; set; }
+        [JsonIgnore]
         public CellBase Location { get; set; }
         protected ChessPieceBase(Side side, CellBase cell)
         {
@@ -20,6 +22,10 @@ namespace ChineseChess_AvaloniaMVVM.Models
             this.Y = cell.Y;
             this.Side = side;
             this.CanMove = false;
+        }
+        protected ChessPieceBase()
+        {
+
         }
         protected ChessPieceBase(ChessPieceBase oldPiece, CellBase cell)
         {

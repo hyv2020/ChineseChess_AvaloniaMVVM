@@ -7,5 +7,16 @@
         {
 
         }
+
+        public override void Reset()
+        {
+            BoardUserControl.ChessBoardVm.ClearBoard();
+            BoardUserControl.ChessBoardVm.LoadGame();
+        }
+        protected override void ToStartWindow()
+        {
+            Reset();
+            base.ToStartWindow();
+        }
     }
 }

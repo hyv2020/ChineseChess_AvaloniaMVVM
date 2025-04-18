@@ -27,7 +27,7 @@
 			<!-- Use a custom ItemsPanel to get col items in a row -->
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
-					<UniformGrid Columns="{Binding RowCount}" />
+					<UniformGrid Columns="{Binding ColumnCount}" />
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>

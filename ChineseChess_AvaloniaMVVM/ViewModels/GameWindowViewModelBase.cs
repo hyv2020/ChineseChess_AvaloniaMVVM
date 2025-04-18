@@ -25,6 +25,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             ToStartWindowCommand = ReactiveCommand.Create(ToStartWindow);
 
         }
+        public abstract void Reset();
         protected virtual void ToStartWindow()
         {
             Parent.ToStartWindow();

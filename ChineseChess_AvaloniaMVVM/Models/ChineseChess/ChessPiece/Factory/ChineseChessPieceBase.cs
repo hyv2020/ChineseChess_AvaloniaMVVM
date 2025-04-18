@@ -26,6 +26,10 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory
         {
 
         }
+        protected ChineseChessPieceBase() : base()
+        {
+            // Empty constructor for serialization
+        }
         public IEnumerable<ChineseChessCell> FliterCellsToValidPoints(IEnumerable<ChineseChessCell> cells)
         {
             var validateCells = cells.Where(c => c.ChessPiece == null || this.Side != c.ChessPiece.Side);

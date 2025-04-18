@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace ChineseChess_AvaloniaMVVM.Models
 {
     public abstract class CellBase : INotifyPropertyChanged
     {
+        [JsonIgnore]
         public ChessBoardBase ChessBoard { get; }
         public int X { get; }
         public int Y { get; }
@@ -15,7 +17,14 @@ namespace ChineseChess_AvaloniaMVVM.Models
                 _IsValidMove = value; OnPropertyChanged(nameof(IsValidMove));
             }
         }
-        public bool IsSelected { get; set; }
+        private bool _IsSelected { get; set; }
+        public bool IsSelected
+        {
+            get => _IsSelected; set
+            {
+                _IsSelected = value; OnPropertyChanged(nameof(IsSelected));
+            }
+        }
         public string Value { get; set; }
         private ChessPieceBase? _ChessPiece;
         public ChessPieceBase? ChessPiece
@@ -38,10 +47,14 @@ namespace ChineseChess_AvaloniaMVVM.Models
             PropertyChanged += postChessPieceMove;
             ChessPiece = null;
         }
+        protected CellBase()
+        {
 
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public abstract void ResolveMove();
+        public abstract string ToSaveCode();
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -50,5 +63,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
         {
             PropertyChanged?.Invoke(ChessPiece, new PropertyChangedEventArgs(nameof(ChessPiece)));
         }
+        public abstract ChessPieceBase? GetChessPiece();
     }
 }

@@ -31,4 +31,5 @@
             <TextBlock Text="Main Window" />
         </Button>
     </Grid>
+
 </UserControl>

@@ -24,9 +24,10 @@
 		<Image x:Name="ChessPiece"
 			Source="{Binding ChessPieceImage}"
 			   DataContext="{Binding ChessPieceVm}"
-			   Width="20"
-			   Height="20"
-			   Grid.ColumnSpan="3"
+		   Width="{Binding Width}"
+					   Height="{Binding Height}"
+	
+		   Grid.ColumnSpan="3"
 			   Grid.RowSpan="3"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
