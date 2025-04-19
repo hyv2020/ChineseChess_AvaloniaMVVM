@@ -1,4 +1,5 @@
-﻿using GameCommons;
+﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
+using GameCommons;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,26 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public CellBase[][] Grid { get => _Grid; set { _Grid = value; } }
         [JsonIgnore]
         public CellBase[] GridArr { get => _Grid is null ? Array.Empty<CellBase>() : _Grid.SelectMany(x => x).ToArray(); }
-        public int RowCount { get; }
-        public int ColumnCount { get; }
+        public int RowCount { get => _Grid == null ? 0 : _Grid.Length; }
+        public int ColumnCount { get => _Grid == null ? 0 : _Grid[0].Length; }
         public int BoardSizeX { get => ColumnCount; }
         public int BoardSizeY { get => RowCount; }
+
+        JsonSerializerSettings _JsonSettings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented,
+        };
+
         public abstract CellBase[][] InitialiseGrid(int rows, int cols, PropertyChangedEventHandler postChessPieceMove);
         public abstract void LoadGame(List<string> matchData = null);
         public abstract IEnumerable<string> SaveGame();
 
         protected ChessBoardBase(int rows, int cols, PropertyChangedEventHandler postChessPieceMove)
         {
-            RowCount = rows;
-            ColumnCount = cols;
             _Grid = InitialiseGrid(rows, cols, postChessPieceMove);
         }
         public void ClearAllValidMoves()
@@ -66,5 +75,26 @@ namespace ChineseChess_AvaloniaMVVM.Models
                 cell.ChessPiece = null;
             }
         }
+        public ChineseChessBoard LoadFromJson(string json)
+        {
+
+            var loadedJson = JsonConvert.DeserializeObject<ChineseChessBoard>(json, _JsonSettings);
+            loadedJson.SelectedCell = null;
+            for (int i = 0; i < loadedJson.RowCount; i++)
+            {
+                for (int j = 0; j < loadedJson.ColumnCount; j++)
+                {
+                    var cell = loadedJson.Grid[i][j];
+                    cell.IsSelected = false;
+                    cell.SetCellCoordinates(loadedJson, j, i);
+                    if (cell.ChessPiece is not null)
+                    {
+                        cell.ChessPiece.SetLocation(cell);
+                    }
+                }
+            }
+            return loadedJson;
+        }
+        public abstract bool CheckWinner(out Side side);
     }
 }

@@ -16,10 +16,10 @@ public partial class CellView : UserControl
 
     private void ChessBoardBackground_PointerPressed(object sender, PointerPressedEventArgs e)
     {
-        var background = sender as Image;
-        if (background != null)
+        var chessBoardBackgroundImage = sender as Image;
+        if (chessBoardBackgroundImage != null)
         {
-            var cell = background.DataContext as CellViewModel;
+            var cell = chessBoardBackgroundImage.DataContext as CellViewModel;
             var board = cell.ChessBoard;
             board.ClearAllValidMoves();
             // Handle the background click event here
@@ -34,23 +34,43 @@ public partial class CellView : UserControl
     {
         // Handle the rectangle click event here
         // For example, you can update the cell value or perform some action
-        var validMove = sender as Rectangle;
-        if (validMove != null)
+        var validMoveImage = sender as Rectangle;
+        if (validMoveImage != null)
         {
-            var cellData = validMove.DataContext as CellBase; // Assuming CellBase is your data model
+            var destination = validMoveImage.DataContext as CellBase; // Assuming CellBase is your data model
+
             // Get the cell index from the rectangle's name
             // Perform some action with the cell index
-            Debug.WriteLine($"Cell clicked! X: {cellData.X}, Y: {cellData.Y}");
-            Debug.WriteLine($"");
-            cellData.ResolveMove();
+            //Debug.WriteLine($"Cell clicked! X: {destination.X}, Y: {destination.Y}");
+            //Debug.WriteLine($"");
+            destination.ResolveMove();
+            destination.ChessBoard.ClearAllValidMoves();
             //cellData.OnPropertyChanged(nameof(cellData));
         }
     }
     private void ChessPiece_PointerPressed(object sender, PointerPressedEventArgs e)
     {
-        var chessPiece = sender as Image;
-        if (chessPiece != null)
+
+        var chessPieceImage = sender as Image;
+        if (chessPieceImage != null)
         {
+            var cellVm = chessPieceImage.DataContext as CellViewModel;
+            if (cellVm != null)
+            {
+                var chessPiece = cellVm.ChessPieceVm;
+                var board = chessPiece.ChessPiece.Location.ChessBoard;
+                board.ClearAllValidMoves();
+                if (chessPiece.ChessPiece.CanMove)
+                {
+                    board.SelectedCell = chessPiece.ChessPiece.Location;
+                    chessPiece.ChessPiece.Location.IsSelected = true;
+                    var validCells = chessPiece.ChessPiece.FindValidMove();
+                    foreach (var cell in validCells)
+                    {
+                        cell.IsValidMove = true;
+                    }
+                }
+            }
 
         }
     }

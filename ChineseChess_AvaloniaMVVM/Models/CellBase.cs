@@ -5,10 +5,13 @@ namespace ChineseChess_AvaloniaMVVM.Models
 {
     public abstract class CellBase : INotifyPropertyChanged
     {
+        private ChessBoardBase _ChessBoard;
         [JsonIgnore]
-        public ChessBoardBase ChessBoard { get; }
-        public int X { get; }
-        public int Y { get; }
+        public ChessBoardBase ChessBoard { get => _ChessBoard; }
+        private int _X;
+        private int _Y;
+        public int X { get; private set; }
+        public int Y { get; private set; }
         private bool _IsValidMove;
         public bool IsValidMove
         {
@@ -38,7 +41,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         protected CellBase(int x, int y, string value, ChessBoardBase chessBoard, PropertyChangedEventHandler postChessPieceMove)
         {
-            ChessBoard = chessBoard;
+            _ChessBoard = chessBoard;
             X = x;
             Y = y;
             Value = value;
@@ -61,8 +64,14 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         public void OnChessPieceChanged()
         {
-            PropertyChanged?.Invoke(ChessPiece, new PropertyChangedEventArgs(nameof(ChessPiece)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChessPiece)));
         }
         public abstract ChessPieceBase? GetChessPiece();
+        internal void SetCellCoordinates(ChessBoardBase chessBoard, int x, int y)
+        {
+            _ChessBoard = chessBoard;
+            X = x;
+            Y = y;
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 {
     public class ChineseChessBoard : ChessBoardBase
     {
+
         public ChineseChessBoard(PropertyChangedEventHandler postChessPieceMove, int rows = 10, int cols = 9) : base(rows, cols, postChessPieceMove)
         {
         }
@@ -61,6 +62,8 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 
                 }
             }
+
+            //var loadedJson = LoadFromJson(ChineseChessDefault.DefaultJson);
         }
         public override IEnumerable<string> SaveGame()
         {
@@ -86,6 +89,19 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
                 sb.Remove(sb.Length - 1, 1);
                 yield return sb.ToString();
             }
+        }
+
+        public override bool CheckWinner(out Side side)
+        {
+            var allGenerals = GridArr.Where(x => x.ChessPiece != null &&
+            ((ChineseChessPieceBase)x.ChessPiece).GetChessPieceType() == ChessPieceType.General);
+            if (allGenerals.Count() < 2)
+            {
+                side = allGenerals.Select(g => ((ChineseChessPieceBase)g.ChessPiece).Side).Single();
+                return true;
+            }
+            side = Side.Red;
+            return false;
         }
     }
 }

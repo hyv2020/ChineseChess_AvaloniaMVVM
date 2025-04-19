@@ -23,7 +23,6 @@
 						   PointerPressed="ChessBoardBackground_PointerPressed"/>
 		<Image x:Name="ChessPiece"
 			Source="{Binding ChessPieceImage}"
-			   DataContext="{Binding ChessPieceVm}"
 		   Width="{Binding Width}"
 					   Height="{Binding Height}"
 	

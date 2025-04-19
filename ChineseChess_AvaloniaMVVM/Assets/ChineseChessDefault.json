@@ -1,0 +1,1308 @@
+{
+    "$id": "1",
+    "CurrentPlayerTurn": 0,
+    "Grid": [
+      [
+        {
+          "$id": "2",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 0,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "3",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Chariot, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackChariot1",
+            "X": 0,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "4",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 1,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "5",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Horse, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackHorse1",
+            "X": 1,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "6",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 2,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "7",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Minister, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackMinister1",
+            "X": 2,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "8",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 3,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "9",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Advisor, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackAdvisor1",
+            "X": 3,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "10",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 4,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "11",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.General, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackGeneral1",
+            "X": 4,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "12",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 5,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "13",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Advisor, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackAdvisor2",
+            "X": 5,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "14",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 6,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "15",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Minister, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackMinister2",
+            "X": 6,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "16",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 7,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "17",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Horse, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackHorse2",
+            "X": 7,
+            "Y": 0,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "18",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 8,
+          "Y": 0,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "19",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Chariot, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackChariot2",
+            "X": 8,
+            "Y": 0,
+            "CanMove": false
+          }
+        }
+      ],
+      [
+        {
+          "$id": "20",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 0,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "21",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 1,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "22",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 2,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "23",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 3,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "24",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 4,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "25",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 5,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "26",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 6,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "27",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 7,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "28",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 8,
+          "Y": 1,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "29",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 0,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "30",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 1,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "31",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Cannon, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackCannon1",
+            "X": 1,
+            "Y": 2,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "32",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 2,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "33",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 3,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "34",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 4,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "35",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 5,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "36",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 6,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "37",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 7,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "38",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Cannon, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackCannon2",
+            "X": 7,
+            "Y": 2,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "39",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 8,
+          "Y": 2,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "40",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 0,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "41",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackSoldier1",
+            "X": 0,
+            "Y": 3,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "42",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 1,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "43",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 2,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "44",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackSoldier2",
+            "X": 2,
+            "Y": 3,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "45",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 3,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "46",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 4,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "47",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackSoldier3",
+            "X": 4,
+            "Y": 3,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "48",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 5,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "49",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 6,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "50",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackSoldier4",
+            "X": 6,
+            "Y": 3,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "51",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 7,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "52",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 8,
+          "Y": 3,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "53",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 1,
+            "Name": "BlackSoldier5",
+            "X": 8,
+            "Y": 3,
+            "CanMove": false
+          }
+        }
+      ],
+      [
+        {
+          "$id": "54",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 0,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "55",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 1,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "56",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 2,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "57",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 3,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "58",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 4,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "59",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 1,
+          "X": 5,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "60",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 6,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "61",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 7,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "62",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 1,
+          "X": 8,
+          "Y": 4,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "63",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 0,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "64",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 1,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "65",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 2,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "66",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 3,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "67",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 4,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "68",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 5,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "69",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 6,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "70",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 7,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "71",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 8,
+          "Y": 5,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "72",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 0,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "73",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedSoldier6",
+            "X": 0,
+            "Y": 6,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "74",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 1,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "75",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 2,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "76",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedSoldier7",
+            "X": 2,
+            "Y": 6,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "77",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 3,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "78",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 4,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "79",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedSoldier8",
+            "X": 4,
+            "Y": 6,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "80",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 5,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "81",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 6,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "82",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedSoldier9",
+            "X": 6,
+            "Y": 6,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "83",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 7,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "84",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 8,
+          "Y": 6,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "85",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Soldier, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedSoldier10",
+            "X": 8,
+            "Y": 6,
+            "CanMove": false
+          }
+        }
+      ],
+      [
+        {
+          "$id": "86",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 0,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "87",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 1,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "88",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Cannon, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedCannon3",
+            "X": 1,
+            "Y": 7,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "89",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 2,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "90",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 3,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "91",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 4,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "92",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 5,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "93",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 6,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "94",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 7,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "95",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Cannon, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedCannon4",
+            "X": 7,
+            "Y": 7,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "96",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 8,
+          "Y": 7,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "97",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 0,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "98",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 1,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "99",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 2,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "100",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 3,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "101",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 4,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "102",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 5,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "103",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 6,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "104",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 7,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        },
+        {
+          "$id": "105",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 8,
+          "Y": 8,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": ""
+        }
+      ],
+      [
+        {
+          "$id": "106",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 0,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "107",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Chariot, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedChariot3",
+            "X": 0,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "108",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 1,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "109",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Horse, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedHorse3",
+            "X": 1,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "110",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 2,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "111",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Minister, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedMinister3",
+            "X": 2,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "112",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 3,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "113",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Advisor, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedAdvisor3",
+            "X": 3,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "114",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 4,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "115",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.General, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedGeneral2",
+            "X": 4,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "116",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": true,
+          "Side": 0,
+          "X": 5,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "117",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Advisor, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedAdvisor4",
+            "X": 5,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "118",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 6,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "119",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Minister, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedMinister4",
+            "X": 6,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "120",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 7,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "121",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Horse, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedHorse4",
+            "X": 7,
+            "Y": 9,
+            "CanMove": false
+          }
+        },
+        {
+          "$id": "122",
+          "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChineseChessCell, ChineseChess_AvaloniaMVVM",
+          "AdvisorArea": false,
+          "Side": 0,
+          "X": 8,
+          "Y": 9,
+          "IsValidMove": false,
+          "IsSelected": false,
+          "Value": "",
+          "ChessPiece": {
+            "$id": "123",
+            "$type": "ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type.Chariot, ChineseChess_AvaloniaMVVM",
+            "Side": 0,
+            "Name": "RedChariot4",
+            "X": 8,
+            "Y": 9,
+            "CanMove": false
+          }
+        }
+      ]
+    ],
+    "RowCount": 10,
+    "ColumnCount": 9,
+    "BoardSizeX": 9,
+    "BoardSizeY": 10
+  }

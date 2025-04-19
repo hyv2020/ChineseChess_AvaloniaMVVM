@@ -3,6 +3,7 @@ using Avalonia.Media.Imaging;
 using ChineseChess_AvaloniaMVVM.Models;
 using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
 using ChineseChess_AvaloniaMVVM.ViewModels.ChineseChess;
+using ReactiveUI;
 using System.ComponentModel;
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
@@ -12,12 +13,12 @@ public partial class CellViewModel : ViewModelBase
     public CellViewModel Self { get => this; }
     public CellBase CellBase { get; }
     public Bitmap BackgroundImage { get; }
-    public Bitmap? ChessPieceImage { get => _ChessPieceVm is null ? null : _ChessPieceVm.ChessPieceImage; }
-    public Bitmap ValidMoveImage { get; }
+    Bitmap? _ChessPieceImage;
+    public Bitmap? ChessPieceImage { get => _ChessPieceImage; private set { this.RaiseAndSetIfChanged(ref _ChessPieceImage, value, nameof(ChessPieceImage)); } }
     public int X { get => CellBase.X; }
     public int Y { get => CellBase.Y; }
     private ChessPieceViewModel? _ChessPieceVm;
-    public ChessPieceViewModel? ChessPieceVm { get => _ChessPieceVm; }
+    public ChessPieceViewModel? ChessPieceVm { get => _ChessPieceVm; set { _ChessPieceVm = value; SetChessPieceImage(); } }
 
     bool _ChessPieceIsVisible { get; set; }
     public bool ChessPieceIsVisible
@@ -52,7 +53,7 @@ public partial class CellViewModel : ViewModelBase
         Height = BackgroundImage.PixelSize.Height;
         Width = BackgroundImage.PixelSize.Width;
         _ChessPieceVm = null;
-        cell.PropertyChanged += ChessPiece_PropertyChanged;
+        CellBase.PropertyChanged += ChessPiece_PropertyChanged;
         ChessBoard = chessBoard;
     }
 
@@ -66,23 +67,32 @@ public partial class CellViewModel : ViewModelBase
         }
         return null;
     }
-
+    private void SetChessPieceImage()
+    {
+        ChessPieceImage = _ChessPieceVm is null ? null : _ChessPieceVm.ChessPieceImage;
+    }
     private void ChessPiece_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        var chessPiece = sender as ChessPieceBase;
-        if (chessPiece != null)
+        var cell = sender as CellBase;
+        if (cell != null)
         {
-            if (chessPiece != null)
+            if (e.PropertyName == nameof(cell.ChessPiece))
             {
-                _ChessPieceVm = new ChessPieceViewModel(chessPiece);
+                if (cell.ChessPiece == null)
+                {
+                    ChessPieceVm = null;
+                }
+                else
+                {
+                    ChessPieceVm = new ChessPieceViewModel(cell.ChessPiece);
+                }
+                ChessPieceIsVisible = _ChessPieceVm != null;
             }
-            else
+            if (e.PropertyName == nameof(cell.IsValidMove))
             {
-                _ChessPieceVm = null;
             }
         }
-        OnPropertyChanged(nameof(ChessPieceImage));
-        ChessPieceIsVisible = _ChessPieceVm != null;
+
     }
     public void ResolveMove()
     {

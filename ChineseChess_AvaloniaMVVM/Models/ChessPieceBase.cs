@@ -8,20 +8,18 @@ namespace ChineseChess_AvaloniaMVVM.Models
     public abstract class ChessPieceBase
     {
         public string Name { get; set; }
-        public readonly int X;
-        public readonly int Y;
+        public int X { get => Location.X; }
+        public int Y { get => Location.Y; }
         public readonly Side Side;
         public bool CanMove { get; set; }
+        CellBase _Location;
         [JsonIgnore]
-        public CellBase Location { get; set; }
+        public CellBase Location { get => _Location; }
         protected ChessPieceBase(Side side, CellBase cell)
         {
-            Location = cell;
-
-            this.X = cell.X;
-            this.Y = cell.Y;
+            _Location = cell;
             this.Side = side;
-            this.CanMove = false;
+            this.CanMove = true;
         }
         protected ChessPieceBase()
         {
@@ -29,18 +27,19 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         protected ChessPieceBase(ChessPieceBase oldPiece, CellBase cell)
         {
-            Location = cell;
+            _Location = cell;
             this.Name = oldPiece.Name;
-            this.X = cell.X;
-            this.Y = cell.Y;
             this.Side = oldPiece.Side;
-            this.CanMove = false;
+            this.CanMove = true;
         }
         public override string ToString()
         {
             return typeof(ChineseChessPieceBase).ToString();
         }
         public abstract IEnumerable<CellBase> FindValidMove();
-
+        internal void SetLocation(CellBase cell)
+        {
+            _Location = cell;
+        }
     }
 }
