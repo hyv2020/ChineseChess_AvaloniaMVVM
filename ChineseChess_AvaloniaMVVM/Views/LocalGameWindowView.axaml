@@ -26,12 +26,12 @@
             Grid.Row="1"
             Grid.Column="1" />
 		<StackPanel Grid.Row ="0" Grid.Column="2" Grid.ColumnSpan="3">
-			<TextBlock x:Name="TurnLabel" Text="Turn Label">
+			<TextBlock x:Name="TurnLabel" Text="{Binding CurrentPlayerTurn}">
 				
 			</TextBlock>
-			<TextBlock x:Name="GameDescription" Text="Game Description">
+			<TextBlock x:Name="GameDescription" Text="{Binding GameDescription}">
 			</TextBlock>
-			<ComboBox x:Name="TurnRecordComboBox" DataContext="{Binding TurnRecord}" PropertyChanged="TurnRecordComboBox_PropertyChanged">
+			<ComboBox x:Name="TurnRecordComboBox" DataContext="{Binding TurnRecord}" DataContextChanged="TurnRecordComboBox_DataContextChanged" SelectionChanged="TurnRecordComboBox_SelectionChanged">
 				
 			</ComboBox>
 			<StackPanel>

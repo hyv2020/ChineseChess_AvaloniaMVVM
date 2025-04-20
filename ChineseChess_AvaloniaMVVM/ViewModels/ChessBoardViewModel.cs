@@ -1,14 +1,21 @@
 using ChineseChess_AvaloniaMVVM.Models;
+using GameCommons;
 using System.Collections.Generic;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
 public class ChessBoardViewModel : ViewModelBase
 {
+    public string GameDescription { get => _ChessBoard.GameDescription; }
     private ChessBoardBase _ChessBoard { get; }
     public List<CellViewModel> GridVm { get; private set; }
     public int ColumnCount => _ChessBoard.ColumnCount;
     public bool Loading { get => _ChessBoard.Loading; set { _ChessBoard.Loading = value; } }
+    public Side CurrentPlayerTurn
+    {
+        get { return _ChessBoard.CurrentPlayerTurn; }
+        set { _ChessBoard.CurrentPlayerTurn = value; }
+    }
     public ChessBoardViewModel(ChessBoardBase chessBoard)
     {
         _ChessBoard = chessBoard;
@@ -34,8 +41,12 @@ public class ChessBoardViewModel : ViewModelBase
     {
         _ChessBoard.SetupGameBoard(matchData);
     }
-    public void SaveGame()
+    public IEnumerable<string> SaveGame()
     {
-        _ChessBoard.SaveGame();
+        return _ChessBoard.SaveGame();
+    }
+    public bool CheckWinner(out Side side)
+    {
+        return _ChessBoard.CheckWinner(out side);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
+using GameCommons;
 using ReactiveUI;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,11 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
     {
         public string Message { get; } = "Chessboard";
         private ChessBoardViewModel _chessBoardVm;
+        public Side CurrentPlayerTurn
+        {
+            get { return _chessBoardVm.CurrentPlayerTurn; }
+            set { _chessBoardVm.CurrentPlayerTurn = value; }
+        }
         public ChessBoardViewModel ChessBoardVm
         {
             get { return _chessBoardVm; }

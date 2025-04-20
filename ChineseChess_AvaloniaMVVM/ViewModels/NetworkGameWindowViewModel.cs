@@ -1,4 +1,6 @@
-﻿namespace ChineseChess_AvaloniaMVVM.ViewModels
+﻿using ChineseChess_AvaloniaMVVM.Models;
+
+namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class NetworkGameWindowViewModel : GameWindowViewModelBase
     {
@@ -14,6 +16,10 @@
         public override void Reset()
         {
 
+        }
+
+        public override void UpdateUIPostMove(ChessBoardBase chessBoard)
+        {
         }
     }
 }

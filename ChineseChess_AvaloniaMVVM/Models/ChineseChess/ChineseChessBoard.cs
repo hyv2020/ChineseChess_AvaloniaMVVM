@@ -10,6 +10,7 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 {
     public class ChineseChessBoard : ChessBoardBase
     {
+        public override string GameDescription => "Chinese Chess Game Description";
 
         public ChineseChessBoard(PropertyChangedEventHandler postChessPieceMove, int rows = 10, int cols = 9) : base(rows, cols, postChessPieceMove)
         {
@@ -62,7 +63,6 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 
                 }
             }
-
             //var loadedJson = LoadFromJson(ChineseChessDefault.DefaultJson);
         }
         public override IEnumerable<string> SaveGame()

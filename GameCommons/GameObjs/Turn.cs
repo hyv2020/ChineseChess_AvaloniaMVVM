@@ -35,5 +35,9 @@ namespace GameCommons
                 }
             }
         }
+        public override string ToString()
+        {
+            return "Turn " + TurnNumber.ToString();
+        }
     }
 }

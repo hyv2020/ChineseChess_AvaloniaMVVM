@@ -11,7 +11,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public int X { get => Location.X; }
         public int Y { get => Location.Y; }
         public readonly Side Side;
-        public bool CanMove { get; set; }
+        public bool CanMove { get => _Location.ChessBoard.CurrentPlayerTurn == Side; }
         CellBase _Location;
         [JsonIgnore]
         public CellBase Location { get => _Location; }
@@ -19,7 +19,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
         {
             _Location = cell;
             this.Side = side;
-            this.CanMove = true;
         }
         protected ChessPieceBase()
         {
@@ -30,7 +29,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
             _Location = cell;
             this.Name = oldPiece.Name;
             this.Side = oldPiece.Side;
-            this.CanMove = true;
         }
         public override string ToString()
         {

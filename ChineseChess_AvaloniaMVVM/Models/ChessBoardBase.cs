@@ -10,7 +10,9 @@ namespace ChineseChess_AvaloniaMVVM.Models
 {
     public abstract class ChessBoardBase
     {
-        public Side CurrentPlayerTurn { get; set; } = Side.Red;
+        public abstract string GameDescription { get; }
+        private Side _CurrentPlayerTurn = Side.Red;
+        public Side CurrentPlayerTurn { get => _CurrentPlayerTurn; set { _CurrentPlayerTurn = value; } }
         [JsonIgnore]
         public CellBase? SelectedCell { get; set; } = null;
         // The grid is a 2D array of CellBase objects

@@ -1,9 +1,9 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
+﻿using ChineseChess_AvaloniaMVVM.Models;
+using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
 using GameCommons;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -11,8 +11,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class LocalGameWindowViewModel : GameWindowViewModelBase
     {
+        public string GameDescription { get => BoardUserControl.ChessBoardVm.GameDescription; }
         public string Message { get; } = "Local Game";
         List<Turn> _turnRecord = new();
+        public int SelectedTurnIndex { get; set; }
         public List<Turn> TurnRecord
         {
             get { return _turnRecord; }
@@ -21,7 +23,11 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         bool _isAutoSaveEnabled = true;
         string _saveFileName;
         int _currentTurn = 0;
-
+        public Side CurrentPlayerTurn
+        {
+            get { return BoardUserControl.ChessBoardVm.CurrentPlayerTurn; }
+            set { BoardUserControl.ChessBoardVm.CurrentPlayerTurn = value; }
+        }
         public string SaveFileName
         {
             get { return _saveFileName; }
@@ -38,7 +44,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             {
                 Reset();
             });
-            PropertyChanged += ResolveMove_UIUpdate;
         }
         public LocalGameWindowViewModel() : this(new MainWindowViewModel())
         {
@@ -46,8 +51,17 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public override void Reset()
         {
-            BoardUserControl.ChessBoardVm.ClearBoard();
-            BoardUserControl.ChessBoardVm.LoadGame();
+            var vm = BoardUserControl.ChessBoardVm;
+            vm.ClearBoard();
+            vm.LoadGame();
+            UtilOps.CheckSaveDirectory();
+            UtilOps.ClearTempFolder();
+            SelectedTurnIndex = 0;
+            var boardState = vm.SaveGame();
+            Turn currentTurnState = new Turn(_currentTurn, CurrentPlayerTurn, boardState.ToList());
+            currentTurnState.SaveToFile();
+            var currentRecord = new List<Turn>() { currentTurnState };
+            TurnRecord = currentRecord;
         }
         protected override void ToStartWindow()
         {
@@ -108,14 +122,19 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             //BoardUserControl.ChessBoardVm.LoadGame(selectedTurn.BoardState);
             //this._currentTurn = selectedTurn.TurnNumber;
         }
-        public void ResolveMove_UIUpdate(object? sender, PropertyChangedEventArgs e)
+        public override void UpdateUIPostMove(ChessBoardBase chessBoard)
         {
-            // Notify the UI to update the chessboard
-            if (sender is ChessBoardUserControlViewModel cbControlVm)
-            {
-                // Update the UI with the new chessboard state
-                //this.UpdateTurnLabel();
-            }
+            var boardState = chessBoard.SaveGame();
+            _currentTurn++;
+            Turn currentTurnState = new Turn(_currentTurn, CurrentPlayerTurn, boardState.ToList());
+            currentTurnState.SaveToFile();
+            var currentRecord = new List<Turn>(TurnRecord) { currentTurnState };
+            TurnRecord = currentRecord;
+            SelectedTurnIndex = TurnRecord.Count - 1;
+        }
+        public bool CheckWinner(out Side side)
+        {
+            return BoardUserControl.ChessBoardVm.CheckWinner(out side);
         }
     }
 }

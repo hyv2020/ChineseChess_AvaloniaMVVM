@@ -25,9 +25,7 @@ public partial class CellView : UserControl
             // Handle the background click event here
             // For example, you can clear the selected cell or perform some action
             Debug.WriteLine("Background clicked!");
-
         }
-
     }
 
     private void ValidMove_PointerPressed(object sender, PointerPressedEventArgs e)
@@ -45,7 +43,6 @@ public partial class CellView : UserControl
             //Debug.WriteLine($"");
             destination.ResolveMove();
             destination.ChessBoard.ClearAllValidMoves();
-            //cellData.OnPropertyChanged(nameof(cellData));
         }
     }
     private void ChessPiece_PointerPressed(object sender, PointerPressedEventArgs e)
