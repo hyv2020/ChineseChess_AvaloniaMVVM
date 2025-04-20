@@ -34,7 +34,7 @@
 			   PointerPressed="ChessPiece_PointerPressed"/>
 		<Rectangle
 			x:Name="ValidMoveImage"
-			Fill="Black"
+			Fill="Blue"
 		DataContext="{Binding CellBase}"
 			IsVisible="{Binding IsValidMove}"
 		   Width="20"

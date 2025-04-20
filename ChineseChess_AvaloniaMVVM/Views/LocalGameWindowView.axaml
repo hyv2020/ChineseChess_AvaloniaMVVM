@@ -13,7 +13,8 @@
     <Design.DataContext>
         <vm:LocalGameWindowViewModel />
     </Design.DataContext>
-    <Grid ColumnDefinitions="0.5*,3*,0.5*" RowDefinitions="0.5*, 3*,0.5*">
+
+    <Grid ColumnDefinitions="0.5*,Auto,0.5*" RowDefinitions="Auto,0.5*">
         <TextBlock
             Grid.Row="0"
             Grid.ColumnSpan="3"
@@ -24,9 +25,40 @@
             x:Name="ChessBoard"
             Grid.Row="1"
             Grid.Column="1" />
+		<StackPanel Grid.Row ="0" Grid.Column="2" Grid.ColumnSpan="3">
+			<TextBlock x:Name="TurnLabel" Text="Turn Label">
+				
+			</TextBlock>
+			<TextBlock x:Name="GameDescription" Text="Game Description">
+			</TextBlock>
+			<ComboBox x:Name="TurnRecordComboBox" DataContext="{Binding TurnRecord}" PropertyChanged="TurnRecordComboBox_PropertyChanged">
+				
+			</ComboBox>
+			<StackPanel>
+				<TextBlock x:Name="AutoSaveText" Text="Auto Save">
+				</TextBlock>
+				<CheckBox x:Name="AutoSaveCheckBox" IsChecked="{Binding IsAutoSaveEnabled}">
+
+				</CheckBox>
+			</StackPanel>
+			<TextBox x:Name="SaveFileName" Text="{Binding SaveFileName}"></TextBox>
+			<Button x:Name="Save">
+				<TextBlock Text="Save" />
+
+			</Button>
+			<Button x:Name="Load">
+				<TextBlock Text="Load" />
+
+			</Button>
+			<Button x:Name="Restart" Command="{Binding RestartCommand}">
+
+				<TextBlock Text="Restart" />
+
+			</Button>
+		</StackPanel>
         <Button
             Grid.Row="2"
-            Grid.Column="1"
+            Grid.Column="2"
             Command="{Binding ToStartWindowCommand}">
             <TextBlock Text="Main Window" />
         </Button>

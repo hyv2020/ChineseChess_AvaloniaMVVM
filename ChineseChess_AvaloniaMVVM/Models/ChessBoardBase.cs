@@ -31,14 +31,24 @@ namespace ChineseChess_AvaloniaMVVM.Models
             NullValueHandling = NullValueHandling.Ignore,
             Formatting = Formatting.Indented,
         };
-
+        bool _loading = false;
+        public bool Loading { get => _loading; set => _loading = value; }
         public abstract CellBase[][] InitialiseGrid(int rows, int cols, PropertyChangedEventHandler postChessPieceMove);
-        public abstract void LoadGame(List<string> matchData = null);
+
+        protected abstract void LoadGameBoard(List<string> matchData = null);
+        public void SetupGameBoard(List<string> matchData = null)
+        {
+            _loading = true;
+            LoadGameBoard(matchData);
+            _loading = false;
+        }
         public abstract IEnumerable<string> SaveGame();
 
         protected ChessBoardBase(int rows, int cols, PropertyChangedEventHandler postChessPieceMove)
         {
+            _loading = true;
             _Grid = InitialiseGrid(rows, cols, postChessPieceMove);
+            _loading = false;
         }
         public void ClearAllValidMoves()
         {
@@ -57,8 +67,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
             }
             try
             {
-                var allCells = GridArr;
-                cell = allCells.Single(c => c.X == x && c.Y == y);
+                cell = _Grid[y][x];
                 return true;
             }
             catch (Exception ex)
@@ -68,16 +77,18 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         public void ClearBoard()
         {
+            _loading = true;
             foreach (var cell in GridArr)
             {
                 cell.IsValidMove = false;
                 cell.IsSelected = false;
                 cell.ChessPiece = null;
             }
+            _loading = false;
         }
         public ChineseChessBoard LoadFromJson(string json)
         {
-
+            _loading = true;
             var loadedJson = JsonConvert.DeserializeObject<ChineseChessBoard>(json, _JsonSettings);
             loadedJson.SelectedCell = null;
             for (int i = 0; i < loadedJson.RowCount; i++)
@@ -93,6 +104,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
                     }
                 }
             }
+            _loading = false;
             return loadedJson;
         }
         public abstract bool CheckWinner(out Side side);

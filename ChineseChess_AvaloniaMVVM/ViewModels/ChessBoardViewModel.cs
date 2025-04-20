@@ -3,16 +3,17 @@ using System.Collections.Generic;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
-public class ChessBoardViewModel
+public class ChessBoardViewModel : ViewModelBase
 {
-    private ChessBoardBase ChessBoard { get; }
+    private ChessBoardBase _ChessBoard { get; }
     public List<CellViewModel> GridVm { get; private set; }
-    public int ColumnCount => ChessBoard.ColumnCount;
+    public int ColumnCount => _ChessBoard.ColumnCount;
+    public bool Loading { get => _ChessBoard.Loading; set { _ChessBoard.Loading = value; } }
     public ChessBoardViewModel(ChessBoardBase chessBoard)
     {
-        ChessBoard = chessBoard;
+        _ChessBoard = chessBoard;
         GridVm = new();
-        foreach (var cell in ChessBoard.GridArr)
+        foreach (var cell in _ChessBoard.GridArr)
         {
             GridVm.Add(new CellViewModel(cell, this));
         }
@@ -27,14 +28,14 @@ public class ChessBoardViewModel
     }
     public void ClearBoard()
     {
-        ChessBoard.ClearBoard();
+        _ChessBoard.ClearBoard();
     }
     public void LoadGame(List<string> matchData = null)
     {
-        ChessBoard.LoadGame(matchData);
+        _ChessBoard.SetupGameBoard(matchData);
     }
     public void SaveGame()
     {
-        ChessBoard.SaveGame();
+        _ChessBoard.SaveGame();
     }
 }

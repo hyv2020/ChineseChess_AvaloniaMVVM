@@ -46,12 +46,15 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type
         }
         private IEnumerable<ChineseChessCell> FindMoveUpLeft(ChineseChessBoard chessBoard)
         {
-            if (chessBoard.FindSpecificCell(X + 1, Y - 1, out var cell))
+            if (CheckOccupiedCell(1, -1, chessBoard))
             {
-                var cc = cell as ChineseChessCell;
-                if (cc.AdvisorArea)
+                if (chessBoard.FindSpecificCell(X + 2, Y - 2, out var cell))
                 {
-                    yield return cc;
+                    var cc = cell as ChineseChessCell;
+                    if (CheckCrossRiver(cc))
+                    {
+                        yield return cc;
+                    }
                 }
             }
         }
@@ -71,9 +74,9 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type
         }
         private IEnumerable<ChineseChessCell> FindMoveUpRight(ChineseChessBoard chessBoard)
         {
-            if (CheckOccupiedCell(1, -1, chessBoard))
+            if (CheckOccupiedCell(1, 1, chessBoard))
             {
-                if (chessBoard.FindSpecificCell(X + 2, Y - 2, out var cell))
+                if (chessBoard.FindSpecificCell(X + 2, Y + 2, out var cell))
                 {
                     var cc = cell as ChineseChessCell;
 

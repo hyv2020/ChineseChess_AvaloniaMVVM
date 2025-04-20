@@ -56,7 +56,16 @@ public partial class CellViewModel : ViewModelBase
         CellBase.PropertyChanged += ChessPiece_PropertyChanged;
         ChessBoard = chessBoard;
     }
-
+    public CellViewModel() : base()
+    {
+        CellBase = null;
+        boardSizeX = 0;
+        boardSizeY = 0;
+        BackgroundImage = GetBackgroundImage();
+        Height = BackgroundImage.PixelSize.Height;
+        Width = BackgroundImage.PixelSize.Width;
+        _ChessPieceVm = null;
+    }
     private Bitmap GetBackgroundImage()
     {
         if (CellBase is ChineseChessCell chineseChessCell)

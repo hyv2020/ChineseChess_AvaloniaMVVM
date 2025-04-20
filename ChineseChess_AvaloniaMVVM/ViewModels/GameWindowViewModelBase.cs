@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using ChineseChess_AvaloniaMVVM.Models;
+using ReactiveUI;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -33,8 +34,19 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         protected void PostChessPieceMove(object? sender, PropertyChangedEventArgs e)
         {
             // Notify the UI to update the chessboard
-            Debug.WriteLine($"Property changed: {e.PropertyName}");
-            Debug.WriteLine("");
+            if (sender is CellBase cellVm && e.PropertyName == "ChessPiece")
+            {
+                var board = cellVm.ChessBoard;
+                if (!board.Loading)
+                {
+                    OnPropertyChanged(e.PropertyName);
+                    // Update the chessboard UI
+                    Debug.WriteLine($"Property changed: {e.PropertyName}");
+                    Debug.WriteLine("");
+                }
+
+            }
+
         }
     }
 }

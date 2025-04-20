@@ -7,7 +7,10 @@
         {
 
         }
-
+        public NetworkGameWindowViewModel() : this(new MainWindowViewModel())
+        {
+            // This constructor is used for design-time data
+        }
         public override void Reset()
         {
 

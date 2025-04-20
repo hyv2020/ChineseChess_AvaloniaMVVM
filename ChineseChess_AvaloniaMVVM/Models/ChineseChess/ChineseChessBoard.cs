@@ -33,7 +33,7 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
             return grid;
         }
 
-        public override void LoadGame(List<string> matchData = null)
+        protected override void LoadGameBoard(List<string> matchData = null)
         {
             matchData = matchData ?? GameCommons.DefaultVariables.defaultBoardStart;
             List<List<string>> board = new List<List<string>>();

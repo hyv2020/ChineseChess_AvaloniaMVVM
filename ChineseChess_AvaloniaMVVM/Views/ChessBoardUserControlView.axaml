@@ -7,9 +7,7 @@
 			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
 			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
 			 x:DataType="vm:ChessBoardUserControlViewModel"
-			     xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM"
-
-			 Background="Violet">
+			     xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM">
 	<Design.DataContext>
 		<vm:ChessBoardUserControlViewModel/>
 	</Design.DataContext>

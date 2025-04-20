@@ -14,6 +14,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             ToLocalGameWindowCommand = ReactiveCommand.Create(ToLocalGameWindow);
             ToNetworkGameWindowCommand = ReactiveCommand.Create(ToNetworkGameWindow);
         }
+        public StartWindowViewModel() : this(new MainWindowViewModel())
+        {
+            // This constructor is used for design-time data
+        }
         protected virtual void ToLocalGameWindow()
         {
             Parent.ToLocalGameWindow();

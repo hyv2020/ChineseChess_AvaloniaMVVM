@@ -22,9 +22,15 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         {
             get { return _chessBoardVm.GridVm; }
         }
+        public bool Loading { get => _chessBoardVm.Loading; set { _chessBoardVm.Loading = value; } }
         public ChessBoardUserControlViewModel(PropertyChangedEventHandler postChessPieceMove)
         {
             var board = new ChineseChessBoard(postChessPieceMove);
+            _chessBoardVm = new ChessBoardViewModel(board);
+        }
+        public ChessBoardUserControlViewModel()
+        {
+            var board = new ChineseChessBoard(null);
             _chessBoardVm = new ChessBoardViewModel(board);
         }
         public void ClearAllValidMoves()
@@ -34,6 +40,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 
         public void ClearBoard()
         {
+
             _chessBoardVm.ClearBoard();
         }
     }
