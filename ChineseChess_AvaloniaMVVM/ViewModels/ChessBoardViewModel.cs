@@ -6,7 +6,9 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
 public class ChessBoardViewModel : ViewModelBase
 {
+    public string GameMode => _ChessBoard.GetType().Name;
     public string GameDescription { get => _ChessBoard.GameDescription; }
+    public bool ActiveGame { get => _ChessBoard.ActiveGame; set { _ChessBoard.ActiveGame = value; } }
     private ChessBoardBase _ChessBoard { get; }
     public List<CellViewModel> GridVm { get; private set; }
     public int ColumnCount => _ChessBoard.ColumnCount;

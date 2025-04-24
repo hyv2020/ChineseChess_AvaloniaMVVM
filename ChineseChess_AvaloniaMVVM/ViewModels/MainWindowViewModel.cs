@@ -4,7 +4,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting { get; } = "Welcome to Avalonia!";
         private WindowViewModelBase _CurrentWindow;
         private StartWindowViewModel _StartWindowViewModel;
         private LocalGameWindowViewModel _LocalGameWindowViewModel;
@@ -22,7 +21,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         public MainWindowViewModel()
         {
             _StartWindowViewModel = new StartWindowViewModel(this);
-            _LocalGameWindowViewModel = new LocalGameWindowViewModel(this);
             _NetworkGameWindowViewModel = new NetworkGameWindowViewModel(this);
             _CurrentWindow = _StartWindowViewModel;
         }
@@ -35,6 +33,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public void ToLocalGameWindow()
         {
+            _LocalGameWindowViewModel = new LocalGameWindowViewModel(this);
             _LocalGameWindowViewModel.Reset();
             CurrentWindow = _LocalGameWindowViewModel;
         }

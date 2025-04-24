@@ -10,6 +10,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
 {
     public abstract class ChessBoardBase
     {
+        public bool ActiveGame { get; set; } = true;
         public abstract string GameDescription { get; }
         private Side _CurrentPlayerTurn = Side.Red;
         public Side CurrentPlayerTurn { get => _CurrentPlayerTurn; set { _CurrentPlayerTurn = value; } }

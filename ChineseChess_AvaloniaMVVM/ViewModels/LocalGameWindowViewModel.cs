@@ -11,23 +11,20 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class LocalGameWindowViewModel : GameWindowViewModelBase
     {
-        public string GameDescription { get => BoardUserControl.ChessBoardVm.GameDescription; }
-        public string Message { get; } = "Local Game";
+        public override string Message { get; } = "Local Game";
         List<Turn> _turnRecord = new();
-        public int SelectedTurnIndex { get; set; }
+        int _currentTurnIndex = 0;
+        public int SelectedTurnIndex { get { return _currentTurn; } set { this.RaiseAndSetIfChanged(ref _currentTurn, value); } }
         public List<Turn> TurnRecord
         {
             get { return _turnRecord; }
             set { this.RaiseAndSetIfChanged(ref _turnRecord, value); }
         }
+        public bool UpdateBoardAfterComboBoxUpdate { get; set; } = false;
         bool _isAutoSaveEnabled = true;
         string _saveFileName;
         int _currentTurn = 0;
-        public Side CurrentPlayerTurn
-        {
-            get { return BoardUserControl.ChessBoardVm.CurrentPlayerTurn; }
-            set { BoardUserControl.ChessBoardVm.CurrentPlayerTurn = value; }
-        }
+
         public string SaveFileName
         {
             get { return _saveFileName; }
@@ -44,6 +41,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             {
                 Reset();
             });
+
         }
         public LocalGameWindowViewModel() : this(new MainWindowViewModel())
         {
@@ -54,11 +52,12 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             var vm = BoardUserControl.ChessBoardVm;
             vm.ClearBoard();
             vm.LoadGame();
+            vm.ActiveGame = true;
             UtilOps.CheckSaveDirectory();
             UtilOps.ClearTempFolder();
             SelectedTurnIndex = 0;
             var boardState = vm.SaveGame();
-            Turn currentTurnState = new Turn(_currentTurn, CurrentPlayerTurn, boardState.ToList());
+            Turn currentTurnState = new Turn(vm.GameMode, _currentTurn, CurrentPlayerTurn, boardState.ToList());
             currentTurnState.SaveToFile();
             var currentRecord = new List<Turn>() { currentTurnState };
             TurnRecord = currentRecord;
@@ -68,11 +67,17 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             Reset();
             base.ToStartWindow();
         }
-        public void LoadGame()
+        public void LoadGame(Turn turn)
         {
             // Load game logic here
-            BoardUserControl.ChessBoardVm.LoadGame();
+            BoardUserControl.ChessBoardVm.ClearBoard();
+            BoardUserControl.ChessBoardVm.LoadGame(turn.BoardState);
+            CurrentPlayerTurn = turn.WhosTurn;
+            this._currentTurn = turn.TurnNumber;
+            CheckWinner(out Side side);
+            this.RaisePropertyChanged(nameof(CurrentPlayerTurn));
         }
+
         private void LoadSave(string saveFilePath)
         {
             try
@@ -124,17 +129,23 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public override void UpdateUIPostMove(ChessBoardBase chessBoard)
         {
+            if (SelectedTurnIndex < TurnRecord.Count - 1)
+            {
+                UtilOps.DeleteTempFilesAfterTurn(SelectedTurnIndex);
+                TurnRecord.RemoveRange(SelectedTurnIndex + 1, TurnRecord.Count - SelectedTurnIndex - 1);
+            }
             var boardState = chessBoard.SaveGame();
             _currentTurn++;
-            Turn currentTurnState = new Turn(_currentTurn, CurrentPlayerTurn, boardState.ToList());
+            Turn currentTurnState = new Turn(chessBoard.GetType().Name, _currentTurn, CurrentPlayerTurn, boardState.ToList());
             currentTurnState.SaveToFile();
             var currentRecord = new List<Turn>(TurnRecord) { currentTurnState };
             TurnRecord = currentRecord;
+            UpdateBoardAfterComboBoxUpdate = false;
             SelectedTurnIndex = TurnRecord.Count - 1;
+            UpdateBoardAfterComboBoxUpdate = true;
+            AutoSaveToFile();
         }
-        public bool CheckWinner(out Side side)
-        {
-            return BoardUserControl.ChessBoardVm.CheckWinner(out side);
-        }
+
+
     }
 }

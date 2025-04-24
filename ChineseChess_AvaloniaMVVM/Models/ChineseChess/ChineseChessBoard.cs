@@ -36,7 +36,7 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
 
         protected override void LoadGameBoard(List<string> matchData = null)
         {
-            matchData = matchData ?? GameCommons.DefaultVariables.defaultBoardStart;
+            matchData = matchData ?? GameCommons.DefaultVariables.ChineseChessDefaultBoardStart;
             List<List<string>> board = new List<List<string>>();
             foreach (var row in matchData)
             {

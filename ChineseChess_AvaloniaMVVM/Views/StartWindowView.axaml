@@ -1,40 +1,49 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 x:Class="ChineseChess_AvaloniaMVVM.Views.StartWindowView"
-			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
-			 x:DataType="vm:StartWindowViewModel">
-	<Design.DataContext>
-		<vm:StartWindowViewModel/>
-	</Design.DataContext>
-	<Grid RowDefinitions="*,*" ColumnDefinitions="*">
-		<StackPanel>
-			<TextBlock Text="{Binding Greeting}" Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center"></TextBlock>
-			<Button
-				Grid.Row="0"
-				Command="{Binding ToLocalGameWindowCommand}">
-				<TextBlock Text="Local Game" />
-			</Button>
-			<Button
-				Grid.Row="1">
-				<TextBlock Text="Load Game" />
-			</Button>
-			<Button
-				Grid.Row="1"
-				Command="{Binding ToNetworkGameWindowCommand}">
-				<TextBlock Text="Network Game" />
-			</Button>
-			<Button
-				Grid.Row="1">
-				<TextBlock Text="How to play" />
-			</Button>
-			<Button
-				Grid.Row="1">
-				<TextBlock Text="Quit Game" />
-			</Button>
-		</StackPanel>
-		
-	</Grid>
+<UserControl
+    x:Class="ChineseChess_AvaloniaMVVM.Views.StartWindowView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:StartWindowViewModel"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:StartWindowViewModel />
+    </Design.DataContext>
+    <Grid
+        Margin="10"
+        ColumnDefinitions="*"
+        RowDefinitions="*,*">
+        <StackPanel>
+            <TextBlock
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Text="{Binding Greeting}"
+                TextAlignment="Center" />
+            <Button
+                Grid.Row="0"
+                Margin="10"
+                Command="{Binding ToLocalGameWindowCommand}">
+                <TextBlock Text="Local Game" />
+            </Button>
+            <Button Grid.Row="1" Margin="10">
+                <TextBlock Text="Load Game" />
+            </Button>
+            <Button
+                Grid.Row="1"
+                Margin="10"
+                Command="{Binding ToNetworkGameWindowCommand}">
+                <TextBlock Text="Network Game" />
+            </Button>
+            <Button Grid.Row="1" Margin="10">
+                <TextBlock Text="How to play" />
+            </Button>
+            <Button Grid.Row="1" Margin="10">
+                <TextBlock Text="Quit Game" />
+            </Button>
+        </StackPanel>
+
+    </Grid>
 </UserControl>

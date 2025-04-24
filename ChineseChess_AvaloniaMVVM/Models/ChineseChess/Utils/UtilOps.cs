@@ -3,8 +3,10 @@ using Aspose.Zip.Saving;
 using GameCommons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils
 {
@@ -138,12 +140,26 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils
             Side side;
             List<string> boardState = new List<string>();
             string[] allLines = File.ReadAllLines(filePath);
-            side = (Side)System.Enum.Parse(typeof(Side), allLines[0]);
-            for (int i = 1; i < allLines.Length; i++)
+            var gameMode = allLines[0];
+            side = (Side)System.Enum.Parse(typeof(Side), allLines[1]);
+            for (int i = 2; i < allLines.Length; i++)
             {
                 boardState.Add(allLines[i]);
             }
-            return new Turn(turn, side, boardState);
+            return new Turn(gameMode, turn, side, boardState);
+        }
+        public static string GetDescription(this System.Enum value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+
+            if (attributes != null && attributes.Any())
+            {
+                return attributes.First().Description;
+            }
+
+            return value.ToString();
         }
 
     }

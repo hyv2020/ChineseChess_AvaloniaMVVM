@@ -1,33 +1,36 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ChineseChess_AvaloniaMVVM.Views.ChessBoardUserControlView"
-			 xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
-			 xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
-			 x:DataType="vm:ChessBoardUserControlViewModel"
-			     xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM">
-	<Design.DataContext>
-		<vm:ChessBoardUserControlViewModel/>
-	</Design.DataContext>
-
-	<Grid x:Name="cb">
-		<ItemsControl ItemsSource="{Binding GridVm}"
-					  HorizontalAlignment="Center"
-					  VerticalAlignment="Center">
-			<!-- Set the DataTemplate -->
-			<ItemsControl.ItemTemplate>
-				<DataTemplate DataType="vm:CellViewModel">
-					<uc:CellView Content="{Binding Self}"/>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-			<!-- Use a custom ItemsPanel to get col items in a row -->
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<UniformGrid Columns="{Binding ColumnCount}" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
-	</Grid>
+<UserControl
+    x:Class="ChineseChess_AvaloniaMVVM.Views.ChessBoardUserControlView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:ChineseChess_AvaloniaMVVM.Models"
+    xmlns:uc="clr-namespace:ChineseChess_AvaloniaMVVM.Views;assembly=ChineseChess_AvaloniaMVVM"
+    xmlns:vm="using:ChineseChess_AvaloniaMVVM.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:ChessBoardUserControlViewModel"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:ChessBoardUserControlViewModel />
+    </Design.DataContext>
+    <Grid x:Name="cb">
+        <ItemsControl
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            ItemsSource="{Binding GridVm}">
+            <!--  Set the DataTemplate  -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:CellViewModel">
+                    <uc:CellView Content="{Binding Self}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <!--  Use a custom ItemsPanel to get col items in a row  -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding ColumnCount}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
 </UserControl>

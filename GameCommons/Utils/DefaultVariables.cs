@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace GameCommons
+﻿namespace GameCommons
 {
     public static class DefaultVariables
     {
-        public static List<string> defaultBoardStart = new List<string>()
+        public static List<string> ChineseChessDefaultBoardStart = new List<string>()
         {
             "15 11 12 13 16 13 12 11 15",
             "0 0 0 0 0 0 0 0 0",

@@ -40,15 +40,11 @@ public partial class CellViewModel : ViewModelBase
             _IsValidMove = value;
         }
     }
-    static int boardSizeX;
-    static int boardSizeY;
     public double Height { get; }
     public double Width { get; }
     public CellViewModel(CellBase cell, ChessBoardViewModel chessBoard) : base()
     {
         CellBase = cell;
-        boardSizeX = cell.ChessBoard.ColumnCount;
-        boardSizeY = cell.ChessBoard.RowCount;
         BackgroundImage = GetBackgroundImage();
         Height = BackgroundImage.PixelSize.Height;
         Width = BackgroundImage.PixelSize.Width;
@@ -59,8 +55,6 @@ public partial class CellViewModel : ViewModelBase
     public CellViewModel() : base()
     {
         CellBase = null;
-        boardSizeX = 0;
-        boardSizeY = 0;
         BackgroundImage = GetBackgroundImage();
         Height = BackgroundImage.PixelSize.Height;
         Width = BackgroundImage.PixelSize.Width;

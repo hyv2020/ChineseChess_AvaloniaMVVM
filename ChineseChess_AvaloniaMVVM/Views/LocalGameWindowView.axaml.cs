@@ -43,6 +43,11 @@ public partial class LocalGameWindowView : UserControl
         if (sender is ComboBox comboBox && comboBox.SelectedItem is Turn selectedTurn)
         {
             var vm = comboBox.Parent.DataContext as LocalGameWindowViewModel;
+            vm.SelectedTurnIndex = comboBox.SelectedIndex;
+            if (vm.UpdateBoardAfterComboBoxUpdate)
+            {
+                vm.LoadGame(selectedTurn);
+            }
         }
     }
 }

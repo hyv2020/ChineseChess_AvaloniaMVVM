@@ -57,7 +57,7 @@ public partial class CellView : UserControl
                 var chessPiece = cellVm.ChessPieceVm;
                 var board = chessPiece.ChessPiece.Location.ChessBoard;
                 board.ClearAllValidMoves();
-                if (chessPiece.ChessPiece.CanMove)
+                if (board.ActiveGame && chessPiece.ChessPiece.CanMove)
                 {
                     board.SelectedCell = chessPiece.ChessPiece.Location;
                     chessPiece.ChessPiece.Location.IsSelected = true;

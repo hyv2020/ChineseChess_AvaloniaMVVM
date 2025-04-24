@@ -1,4 +1,5 @@
 ﻿using ChineseChess_AvaloniaMVVM.Models;
+using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
 using GameCommons;
 using ReactiveUI;
 using System.ComponentModel;
@@ -9,11 +10,17 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public abstract class GameWindowViewModelBase : WindowViewModelBase
     {
-        public string Greeting { get; } = "Welcome to Avalonia! UserControl";
+        public string GameDescription { get => BoardUserControl.ChessBoardVm.GameDescription; }
+        public abstract string Message { get; }
         ChessBoardUserControlViewModel _boardUserControl;
         public ICommand ToStartWindowCommand { get; }
         public MainWindowViewModel Parent { get; }
-
+        public Side CurrentPlayerTurn
+        {
+            get { return BoardUserControl.ChessBoardVm.CurrentPlayerTurn; }
+            set { BoardUserControl.ChessBoardVm.CurrentPlayerTurn = value; }
+        }
+        public string TurnLabelText { get; set; }
         public ChessBoardUserControlViewModel BoardUserControl
         {
             get { return _boardUserControl; }
@@ -24,6 +31,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         {
             Parent = parent;
             _boardUserControl = new ChessBoardUserControlViewModel(PostChessPieceMove);
+            SetTurnLabel();
             ToStartWindowCommand = ReactiveCommand.Create(ToStartWindow);
 
         }
@@ -54,6 +62,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                     {
                         board.CurrentPlayerTurn = Side.Red;
                     }
+                    SetTurnLabel();
                     UpdateUIPostMove(board);
                     // Update the chessboard UI
                     Debug.WriteLine($"Property changed: {e.PropertyName}");
@@ -64,5 +73,24 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 
         }
         public abstract void UpdateUIPostMove(ChessBoardBase chessBoard);
+        public bool CheckWinner(out Side side)
+        {
+            var thereIsWinner = BoardUserControl.ChessBoardVm.CheckWinner(out side);
+            BoardUserControl.ChessBoardVm.ActiveGame = !thereIsWinner;
+            return thereIsWinner;
+        }
+        public void SetTurnLabel()
+        {
+            if (BoardUserControl.ChessBoardVm.ActiveGame)
+            {
+                TurnLabelText = CurrentPlayerTurn.GetDescription() + " turn";
+            }
+            else
+            {
+                CheckWinner(out Side winner);
+                TurnLabelText = winner.GetDescription() + " wins!";
+            }
+            this.RaisePropertyChanged(nameof(TurnLabelText));
+        }
     }
 }

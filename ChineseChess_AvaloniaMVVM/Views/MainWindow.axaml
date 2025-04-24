@@ -20,11 +20,12 @@
         -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
+	<Window.DataContext>
+		<vm:MainWindowViewModel/>
+	</Window.DataContext>
 
-	<Grid
-		ColumnDefinitions="*"
-		RowDefinitions="*">
-		<TransitioningContentControl x:Name="Window" Content="{Binding CurrentWindow}" />
-	</Grid>
+	<Grid ColumnDefinitions="*" RowDefinitions="*">
+        <TransitioningContentControl x:Name="Window" Content="{Binding CurrentWindow}" />
+    </Grid>
 
 </Window>
