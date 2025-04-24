@@ -1,9 +1,12 @@
 using Avalonia.Controls;
+using Avalonia.Platform.Storage;
+using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using GameCommons;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChineseChess_AvaloniaMVVM.Views;
 
@@ -48,6 +51,45 @@ public partial class LocalGameWindowView : UserControl
             {
                 vm.LoadGame(selectedTurn);
             }
+        }
+    }
+    private async void LoadButton_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (sender is TextBlock block)
+        {
+            var vm = block.Parent.DataContext as LocalGameWindowViewModel;
+            await LoadFile(vm);
+
+        }
+    }
+    private async Task LoadFile(LocalGameWindowViewModel vm)
+    {
+        // Get top level from the current control. Alternatively, you can use Window reference instead.
+        var topLevel = TopLevel.GetTopLevel(this);
+        FilePickerOpenOptions filePickerOpenOptions = new FilePickerOpenOptions()
+        {
+            Title = "Open Save File",
+            AllowMultiple = false
+        };
+        UtilOps.CheckSaveDirectory();
+        IStorageFolder storageFolder = await topLevel.StorageProvider.TryGetFolderFromPathAsync(FilePaths.rootSaveFilePath);
+        filePickerOpenOptions.SuggestedStartLocation = storageFolder;
+        filePickerOpenOptions.FileTypeFilter = new List<FilePickerFileType>()
+        {
+            new FilePickerFileType("Save File")
+            {
+                Patterns = new List<string>() { "*.sav" }
+            }
+        };
+        // Start async operation to open the dialog.
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(filePickerOpenOptions);
+
+        if (files.Count == 1)
+        {
+            var selectedFile = files[0];
+            UtilOps.ClearTempFolder();
+            string saveFileName = selectedFile.Name;
+            vm.LoadGameFromFile(saveFileName);
         }
     }
 }

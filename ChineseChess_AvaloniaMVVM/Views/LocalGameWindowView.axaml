@@ -46,7 +46,7 @@
 
             </Button>
             <Button x:Name="Load">
-                <TextBlock Text="Load" />
+                <TextBlock Text="Load" PointerPressed="LoadButton_PointerPressed"/>
 
             </Button>
             <Button x:Name="Restart" Command="{Binding RestartCommand}">

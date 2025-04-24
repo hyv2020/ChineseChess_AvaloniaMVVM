@@ -82,8 +82,8 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         {
             try
             {
+                var toLoad = UtilOps.LoadSaveFile(saveFilePath);
                 TurnRecord = new(UtilOps.LoadSaveFile(saveFilePath));
-
             }
             catch (Exception ex)
             {
@@ -93,7 +93,11 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             BoardUserControl.ChessBoardVm.ClearBoard();
             BoardUserControl.ChessBoardVm.LoadGame(selectedTurn.BoardState);
             this._currentTurn = selectedTurn.TurnNumber;
-            //this.UpdateTurnLabel();
+            CurrentPlayerTurn = selectedTurn.WhosTurn;
+            UpdateBoardAfterComboBoxUpdate = false;
+            SelectedTurnIndex = TurnRecord.Count - 1;
+            UpdateBoardAfterComboBoxUpdate = true;
+            SetTurnLabel();
         }
         private string GetSaveFileName()
         {
@@ -145,7 +149,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             UpdateBoardAfterComboBoxUpdate = true;
             AutoSaveToFile();
         }
-
+        public void LoadGameFromFile(string saveFileName)
+        {
+            LoadSave(saveFileName);
+        }
 
     }
 }
