@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
+using ChineseChess_AvaloniaMVVM.Models;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using GameCommons;
 using System.Collections.Generic;
@@ -50,6 +50,7 @@ public partial class LocalGameWindowView : UserControl
             if (vm.UpdateBoardAfterComboBoxUpdate)
             {
                 vm.LoadGame(selectedTurn);
+                vm.SetTurnLabel();
             }
         }
     }
@@ -59,7 +60,8 @@ public partial class LocalGameWindowView : UserControl
         {
             var vm = block.Parent.DataContext as LocalGameWindowViewModel;
             await LoadFile(vm);
-
+            vm.SetTurnLabel();
+            TurnRecordComboBox.SelectedIndex = vm.TurnRecord.Count - 1;
         }
     }
     private async Task LoadFile(LocalGameWindowViewModel vm)
@@ -88,7 +90,7 @@ public partial class LocalGameWindowView : UserControl
         {
             var selectedFile = files[0];
             UtilOps.ClearTempFolder();
-            string saveFileName = selectedFile.Name;
+            string saveFileName = selectedFile.Path.AbsolutePath;
             vm.LoadGameFromFile(saveFileName);
         }
     }

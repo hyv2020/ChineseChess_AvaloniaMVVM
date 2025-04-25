@@ -1,6 +1,7 @@
-﻿using ChineseChess_AvaloniaMVVM.Models;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
+﻿using Avalonia.Threading;
+using ChineseChess_AvaloniaMVVM.Models;
 using GameCommons;
+using MsBox.Avalonia;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             set { this.RaiseAndSetIfChanged(ref _turnRecord, value); }
         }
         public bool UpdateBoardAfterComboBoxUpdate { get; set; } = false;
-        bool _isAutoSaveEnabled = true;
-        string _saveFileName;
+        bool _isAutoSaveEnabled = false;
+        string _saveFileName = string.Empty;
         int _currentTurn = 0;
 
         public string SaveFileName
@@ -40,6 +41,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             RestartCommand = ReactiveCommand.Create(() =>
             {
                 Reset();
+            });
+            SaveCommand = ReactiveCommand.Create(() =>
+            {
+                SaveCommand_Executed();
             });
 
         }
@@ -64,7 +69,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         protected override void ToStartWindow()
         {
-            Reset();
             base.ToStartWindow();
         }
         public void LoadGame(Turn turn)
@@ -87,7 +91,12 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message, "Failed to load save file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var errorMessageMobx = MessageBoxManager.GetMessageBoxStandard("Failed to load save file", ex.Message, MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error);
+                Dispatcher.UIThread.InvokeAsync(async () =>
+                {
+                    await errorMessageMobx.ShowAsync();
+                    return;
+                });
             }
             var selectedTurn = TurnRecord.Last();
             BoardUserControl.ChessBoardVm.ClearBoard();
@@ -122,7 +131,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public ICommand RestartCommand { get; }
         public ICommand SaveCommand { get; }
-        public ICommand LoadCommand { get; }
         public void TurnRecordComboBox_PropertyChanged()
         {
             // Load the selected turn from the TurnRecord
@@ -153,6 +161,40 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         {
             LoadSave(saveFileName);
         }
-
+        private void SaveCommand_Executed()
+        {
+            string fileName = GetSaveFileName();
+            if (System.IO.File.Exists(FilePaths.rootSaveFilePath + fileName + ".sav"))
+            {
+                var overwriteMessage = MessageBoxManager.GetMessageBoxStandard("Save file exist", "Overwrite existing file?", MsBox.Avalonia.Enums.ButtonEnum.YesNoCancel, MsBox.Avalonia.Enums.Icon.Question);
+                Dispatcher.UIThread.InvokeAsync(async () =>
+                {
+                    var result = await overwriteMessage.ShowAsync();
+                    if (result == MsBox.Avalonia.Enums.ButtonResult.Yes)
+                    {
+                        UtilOps.SaveFile(fileName, true);
+                        SaveGameMessage();
+                    }
+                    else if (result == MsBox.Avalonia.Enums.ButtonResult.No)
+                    {
+                        UtilOps.SaveFile(fileName, false);
+                        SaveGameMessage();
+                    }
+                });
+            }
+            else
+            {
+                UtilOps.SaveFile(fileName, false);
+                SaveGameMessage();
+            }
+        }
+        private void SaveGameMessage()
+        {
+            var message = MessageBoxManager.GetMessageBoxStandard("Game saved", "Game saved", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
+            Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                await message.ShowAsync();
+            });
+        }
     }
 }

@@ -41,13 +41,11 @@
                 <CheckBox x:Name="AutoSaveCheckBox" IsChecked="{Binding IsAutoSaveEnabled}" />
             </StackPanel>
             <TextBox x:Name="SaveFileName" Text="{Binding SaveFileName}" />
-            <Button x:Name="Save">
+            <Button x:Name="Save" Command="{Binding SaveCommand}">
                 <TextBlock Text="Save" />
-
             </Button>
             <Button x:Name="Load">
-                <TextBlock Text="Load" PointerPressed="LoadButton_PointerPressed"/>
-
+                <TextBlock PointerPressed="LoadButton_PointerPressed" Text="Load" />
             </Button>
             <Button x:Name="Restart" Command="{Binding RestartCommand}">
 
@@ -62,6 +60,6 @@
             Command="{Binding ToStartWindowCommand}">
             <TextBlock Text="Main Window" />
         </Button>
-    </Grid>
+</Grid>
 
 </UserControl>

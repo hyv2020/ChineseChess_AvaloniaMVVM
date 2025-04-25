@@ -1,6 +1,7 @@
-﻿using ChineseChess_AvaloniaMVVM.Models;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils;
+﻿using Avalonia.Threading;
+using ChineseChess_AvaloniaMVVM.Models;
 using GameCommons;
+using MsBox.Avalonia;
 using ReactiveUI;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -38,7 +39,16 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         public abstract void Reset();
         protected virtual void ToStartWindow()
         {
-            Parent.ToStartWindow();
+            var question = MessageBoxManager.GetMessageBoxStandard("To Start Window", "This action to end current game. Continue?", MsBox.Avalonia.Enums.ButtonEnum.YesNo, MsBox.Avalonia.Enums.Icon.Question);
+            Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                var result = await question.ShowAsync();
+                if (result == MsBox.Avalonia.Enums.ButtonResult.Yes)
+                {
+                    Reset();
+                    Parent.ToStartWindow();
+                }
+            });
         }
         protected void PostChessPieceMove(object? sender, PropertyChangedEventArgs e)
         {

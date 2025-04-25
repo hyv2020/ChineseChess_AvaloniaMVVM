@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils
+namespace ChineseChess_AvaloniaMVVM.Models
 {
     public static class UtilOps
     {
@@ -141,14 +141,14 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.Utils
             List<string> boardState = new List<string>();
             string[] allLines = File.ReadAllLines(filePath);
             var gameMode = allLines[0];
-            side = (Side)System.Enum.Parse(typeof(Side), allLines[1]);
+            side = (Side)Enum.Parse(typeof(Side), allLines[1]);
             for (int i = 2; i < allLines.Length; i++)
             {
                 boardState.Add(allLines[i]);
             }
             return new Turn(gameMode, turn, side, boardState);
         }
-        public static string GetDescription(this System.Enum value)
+        public static string GetDescription(this Enum value)
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
 

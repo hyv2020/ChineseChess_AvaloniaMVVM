@@ -2,6 +2,7 @@
 using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
 using GameCommons;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
     public class ChineseChessBoard : ChessBoardBase
     {
         public override string GameDescription => "Chinese Chess Game Description";
+
+        public override ReadOnlyCollection<string> DefaultMatchData => GameCommons.DefaultVariables.ChineseChessDefaultBoardStart.AsReadOnly();
 
         public ChineseChessBoard(PropertyChangedEventHandler postChessPieceMove, int rows = 10, int cols = 9) : base(rows, cols, postChessPieceMove)
         {
@@ -34,37 +37,7 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
             return grid;
         }
 
-        protected override void LoadGameBoard(List<string> matchData = null)
-        {
-            matchData = matchData ?? GameCommons.DefaultVariables.ChineseChessDefaultBoardStart;
-            List<List<string>> board = new List<List<string>>();
-            foreach (var row in matchData)
-            {
-                List<string> rowData = row.Split(' ').ToList();
-                board.Add(rowData);
-            }
-            for (int y = 0; y < board.Count; y++)
-            {
-                for (int x = 0; x < board[y].Count; x++)
-                {
-                    char[] cell = board[y][x].ToCharArray();
-                    if (cell.Length > 1)
-                    {
-                        Side side = (Side)System.Enum.Parse(typeof(Side), cell.First().ToString());
-                        ChessPieceType chessPieceType = (ChessPieceType)System.Enum.Parse(typeof(ChessPieceType), cell.Last().ToString());
 
-                        this.Grid[y][x].ChessPiece = ChessPieceFactory.CreateChessPiece(side, chessPieceType,
-                            this.Grid[y][x] as ChineseChessCell);
-                    }
-                    else
-                    {
-                        this.Grid[y][x].ChessPiece = null;
-                    }
-
-                }
-            }
-            //var loadedJson = LoadFromJson(ChineseChessDefault.DefaultJson);
-        }
         public override IEnumerable<string> SaveGame()
         {
             /*var jsonSettings = new JsonSerializerSettings
@@ -95,13 +68,36 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
         {
             var allGenerals = GridArr.Where(x => x.ChessPiece != null &&
             ((ChineseChessPieceBase)x.ChessPiece).GetChessPieceType() == ChessPieceType.General);
-            if (allGenerals.Count() < 2)
+            var generalCount = allGenerals.Count();
+            if (generalCount == 1)
             {
                 side = allGenerals.Select(g => ((ChineseChessPieceBase)g.ChessPiece).Side).Single();
                 return true;
             }
+            // double ko is impossible
+            if (generalCount == 0)
+            {
+                throw new System.Exception("No generals on the board");
+            }
             side = Side.Red;
             return false;
+        }
+
+        protected override void LoadChessPieceToCell(string chessPieceCode, CellBase cell)
+        {
+            char[] arr = chessPieceCode.ToCharArray();
+            if (arr.Length > 1)
+            {
+                Side side = (Side)System.Enum.Parse(typeof(Side), arr.First().ToString());
+                ChessPieceType chessPieceType = (ChessPieceType)System.Enum.Parse(typeof(ChessPieceType), arr.Last().ToString());
+
+                cell.ChessPiece = ChessPieceFactory.CreateChessPiece(side, chessPieceType,
+                    cell as ChineseChessCell);
+            }
+            else
+            {
+                cell.ChessPiece = null;
+            }
         }
     }
 }

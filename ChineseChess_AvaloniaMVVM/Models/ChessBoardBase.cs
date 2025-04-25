@@ -3,6 +3,7 @@ using GameCommons;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public int ColumnCount { get => _Grid == null ? 0 : _Grid[0].Length; }
         public int BoardSizeX { get => ColumnCount; }
         public int BoardSizeY { get => RowCount; }
+        public abstract ReadOnlyCollection<string> DefaultMatchData { get; }
 
         JsonSerializerSettings _JsonSettings = new JsonSerializerSettings
         {
@@ -38,11 +40,28 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public bool Loading { get => _loading; set => _loading = value; }
         public abstract CellBase[][] InitialiseGrid(int rows, int cols, PropertyChangedEventHandler postChessPieceMove);
 
-        protected abstract void LoadGameBoard(List<string> matchData = null);
+        protected void LoadGameBoard(List<string> defaultMatchData, List<string> matchData = null)
+        {
+            matchData = matchData ?? defaultMatchData;
+            List<List<string>> board = new List<List<string>>();
+            foreach (var row in matchData)
+            {
+                List<string> rowData = row.Split(' ').ToList();
+                board.Add(rowData);
+            }
+            for (int y = 0; y < board.Count; y++)
+            {
+                for (int x = 0; x < board[y].Count; x++)
+                {
+                    LoadChessPieceToCell(board[y][x], this.Grid[y][x]);
+                }
+            }
+        }
+        protected abstract void LoadChessPieceToCell(string chessPieceCode, CellBase cell);
         public void SetupGameBoard(List<string> matchData = null)
         {
             _loading = true;
-            LoadGameBoard(matchData);
+            LoadGameBoard(DefaultMatchData.ToList(), matchData);
             _loading = false;
         }
         public abstract IEnumerable<string> SaveGame();
