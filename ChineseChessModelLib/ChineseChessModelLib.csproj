@@ -4,10 +4,18 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath></BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Avalonia">
+    <AvaloniaUseCompiledBindingsByDefault>True</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChessModelLib\ChessModelLib.csproj" />
   </ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\ChineseChess_AvaloniaMVVM\Assets\Dlls\&quot; /Y /I /E" />
+	</Target>
 </Project>

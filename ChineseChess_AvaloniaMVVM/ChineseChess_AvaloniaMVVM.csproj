@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-    <Folder Include="Assets\Dlls\" />
+    <AvaloniaResource Remove="Assets\Dlls\**" />
+    <AvaloniaXaml Remove="Assets\Dlls\**" />
+    <Compile Remove="Assets\Dlls\**" />
+    <EmbeddedResource Remove="Assets\Dlls\**" />
+    <None Remove="Assets\Dlls\**" />
     <Folder Include="UIControls\" />
   </ItemGroup>
 
@@ -28,7 +32,6 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
