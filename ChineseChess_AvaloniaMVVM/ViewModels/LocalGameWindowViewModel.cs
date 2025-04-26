@@ -62,8 +62,9 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             UtilOps.CheckSaveDirectory();
             UtilOps.ClearTempFolder();
             SelectedTurnIndex = 0;
+            var resetSide = TurnRecord[0].WhosTurn;
             var boardState = vm.SaveGame();
-            Turn currentTurnState = new Turn(vm.GameMode, _currentTurn, CurrentPlayerTurn, boardState.ToList());
+            Turn currentTurnState = new Turn(vm.GameMode, _currentTurn, resetSide, boardState.ToList());
             currentTurnState.SaveToFile();
             var currentRecord = new List<Turn>() { currentTurnState };
             TurnRecord = currentRecord;
