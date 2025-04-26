@@ -1,8 +1,10 @@
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using ChineseChess_AvaloniaMVVM.Models;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using GameCommons;
+using MsBox.Avalonia;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -32,11 +34,16 @@ public partial class LocalGameWindowView : UserControl
                 {
                     comboBox.SelectedItem = turns[vm.SelectedTurnIndex];
                 }
-                if (vm.CheckWinner(out Side side))
+                if (vm.CheckWinner(out Side winner))
                 {
                     // Handle the winner here
                     // For example, you can show a message or update the UI
-                    Debug.WriteLine($"Winner: {side}");
+                    var winnnerMessage = MessageBoxManager.GetMessageBoxStandard("We have a winner", $"{winner} Side Wins", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
+                    Dispatcher.UIThread.InvokeAsync(async () =>
+                    {
+                        var result = await winnnerMessage.ShowAsync();
+                    });
+                    Debug.WriteLine($"Winner: {winner}");
                 }
             }
         }

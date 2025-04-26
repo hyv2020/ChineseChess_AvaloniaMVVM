@@ -29,11 +29,11 @@
             Grid.Row="1"
             Grid.Column="2"
             Grid.ColumnSpan="3">
-            <TextBlock x:Name="TurnLabel" Text="Turn Label" />
-            <TextBlock x:Name="GameDescription" Text="Game Description" />
-            <TextBlock x:Name="PlayerLabel" Text="Player Label" />
-            <TextBlock x:Name="ConectionStatus" Text="Connection Status" />
-            <TextBlock x:Name="PublicIP" Text="Public IP" />
+            <TextBlock x:Name="TurnLabel" Text="{Binding TurnLabelText}" />
+            <TextBlock x:Name="GameDescription" Text="{Binding GameDescription}" />
+            <TextBlock x:Name="PlayerLabel" Text="{Binding PlayerLabelText}" />
+            <TextBlock x:Name="ConectionStatus" Text="{Binding ConnectionStatusText}" />
+            <TextBlock x:Name="PublicIP" Text="{Binding PublicIPLabelText}" />
         </StackPanel>
         <Button
             Grid.Row="2"

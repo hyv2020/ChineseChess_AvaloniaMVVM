@@ -1,10 +1,9 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
+﻿using Avalonia.Media.Imaging;
+using ChessModelLib;
+using ChineseChessModelLib.Enum;
 using GameCommons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory
+namespace ChineseChessModelLib.ChessPiece.Factory
 {
     public abstract class ChineseChessPieceBase : ChessPieceBase
     {
@@ -48,6 +47,11 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory
                 }
             }
             throw new Exception();
+        }
+        public override Bitmap GetChessPieceImage()
+        {
+            Bitmap chessPieceImage = DrawChineseChessPiece.DrawImage(this);
+            return chessPieceImage;
         }
     }
 }

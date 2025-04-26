@@ -1,8 +1,6 @@
 ﻿using NetworkCommons;
-using System;
 using System.Diagnostics;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace GameClient
 {
@@ -12,10 +10,11 @@ namespace GameClient
         TcpClient tcpClient;
         NetworkStream stream;
         bool streamOpened = false;
-
-        public AsynchronousClient(string server)
+        public string GameMode { get; }
+        public AsynchronousClient(string server, string gameMode)
         {
             this.serverIP = server;
+            GameMode = gameMode;
         }
         public async Task ConnectAsync()
         {

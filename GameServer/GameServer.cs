@@ -1,10 +1,8 @@
 ﻿using GameCommons;
 using NetworkCommons;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
 namespace GameServer
 {
@@ -13,9 +11,10 @@ namespace GameServer
         TcpListener server = new TcpListener(IPAddress.Any, Ports.remotePort);
         public Turn hostStartTurn;
         public Side? hostStartSide;
-        public AsynchronousTCPListener()
+        public string GameMode { get; }
+        public AsynchronousTCPListener(string gameMode)
         {
-
+            GameMode = gameMode;
         }
 
         public static HashSet<TcpClient> clients = new HashSet<TcpClient>();
@@ -40,6 +39,7 @@ namespace GameServer
                     Debug.WriteLine("Client Connected!");
                     var clientCount = clients.Count.ToByteArray();
                     // tell second player start state
+                    await RedirectToClientAsync(GameMode, client);
                     await RedirectToClientAsync(clients.Count, client);
                     await RedirectToClientAsync(hostStartTurn, client);
                     await RedirectToClientAsync(hostStartSide.ToString(), client);

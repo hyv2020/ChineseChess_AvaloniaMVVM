@@ -1,8 +1,7 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
-using System;
+﻿using ChineseChessModelLib.ChessPiece.Factory;
+using ChineseChessModelLib.Enum;
 
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece
+namespace ChineseChessModelLib.ChessPiece
 {
 
 

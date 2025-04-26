@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameClient", "GameClient\GameClient.csproj", "{4C1EC99F-6B3F-EDA8-8AFF-144D78D0BD08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessModelLib", "ChessModelLib\ChessModelLib.csproj", "{51AF7B4D-815A-40B3-ACB2-A9887BDB0E27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseChessModelLib", "ChineseChessModelLib\ChineseChessModelLib.csproj", "{5F024C10-44CD-8EA3-F055-834EF6D71086}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{4C1EC99F-6B3F-EDA8-8AFF-144D78D0BD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1EC99F-6B3F-EDA8-8AFF-144D78D0BD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1EC99F-6B3F-EDA8-8AFF-144D78D0BD08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AF7B4D-815A-40B3-ACB2-A9887BDB0E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AF7B4D-815A-40B3-ACB2-A9887BDB0E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AF7B4D-815A-40B3-ACB2-A9887BDB0E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AF7B4D-815A-40B3-ACB2-A9887BDB0E27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F024C10-44CD-8EA3-F055-834EF6D71086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F024C10-44CD-8EA3-F055-834EF6D71086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F024C10-44CD-8EA3-F055-834EF6D71086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F024C10-44CD-8EA3-F055-834EF6D71086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

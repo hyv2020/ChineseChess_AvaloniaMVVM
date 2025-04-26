@@ -1,9 +1,8 @@
 ﻿using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
-using System;
+using ChineseChessModelLib.ChessPiece.Factory;
 
-namespace ChineseChess_AvaloniaMVVM.ViewModels.ChineseChess
+namespace ChineseChessModelLib
 {
     internal static class DrawChineseChessPiece
     {

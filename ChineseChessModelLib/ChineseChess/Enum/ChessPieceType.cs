@@ -1,4 +1,4 @@
-﻿namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum
+﻿namespace ChineseChessModelLib.Enum
 {
     //define piece type
     public enum ChessPieceType

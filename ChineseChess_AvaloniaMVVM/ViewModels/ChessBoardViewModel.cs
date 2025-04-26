@@ -1,4 +1,4 @@
-using ChineseChess_AvaloniaMVVM.Models;
+using ChessModelLib;
 using GameCommons;
 using System.Collections.Generic;
 

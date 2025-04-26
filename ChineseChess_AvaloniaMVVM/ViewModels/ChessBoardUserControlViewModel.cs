@@ -1,4 +1,4 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
+﻿using ChessModelLib;
 using GameCommons;
 using ReactiveUI;
 using System.Collections.Generic;
@@ -29,16 +29,12 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             get { return _chessBoardVm.GridVm; }
         }
         public bool Loading { get => _chessBoardVm.Loading; set { _chessBoardVm.Loading = value; } }
-        public ChessBoardUserControlViewModel(PropertyChangedEventHandler postChessPieceMove)
+        public ChessBoardUserControlViewModel(PropertyChangedEventHandler postChessPieceMove, ICreateBoardCommand gameToCreate)
         {
-            var board = new ChineseChessBoard(postChessPieceMove);
+            var board = gameToCreate.Execute(postChessPieceMove);
             _chessBoardVm = new ChessBoardViewModel(board);
         }
-        public ChessBoardUserControlViewModel()
-        {
-            var board = new ChineseChessBoard(null);
-            _chessBoardVm = new ChessBoardViewModel(board);
-        }
+
         public void ClearAllValidMoves()
         {
             _chessBoardVm.ClearAllValidMoves();

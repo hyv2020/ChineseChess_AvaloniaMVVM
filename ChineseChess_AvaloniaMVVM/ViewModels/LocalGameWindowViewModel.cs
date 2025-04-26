@@ -1,4 +1,5 @@
 ﻿using Avalonia.Threading;
+using ChessModelLib;
 using ChineseChess_AvaloniaMVVM.Models;
 using GameCommons;
 using MsBox.Avalonia;

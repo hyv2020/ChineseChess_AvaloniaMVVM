@@ -1,12 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Avalonia.Media.Imaging;
 using System.ComponentModel;
 
-namespace ChineseChess_AvaloniaMVVM.Models
+namespace ChessModelLib
 {
     public abstract class CellBase : INotifyPropertyChanged
     {
         private ChessBoardBase _ChessBoard;
-        [JsonIgnore]
         public ChessBoardBase ChessBoard { get => _ChessBoard; }
         private int _X;
         private int _Y;
@@ -41,9 +40,9 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         protected CellBase(int x, int y, string value, ChessBoardBase chessBoard, PropertyChangedEventHandler postChessPieceMove)
         {
-            _ChessBoard = chessBoard;
             X = x;
             Y = y;
+            _ChessBoard = chessBoard;
             Value = value;
             IsValidMove = true;
             IsSelected = false;
@@ -73,5 +72,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
             X = x;
             Y = y;
         }
+        public abstract Bitmap GetBackgroundImage();
     }
 }

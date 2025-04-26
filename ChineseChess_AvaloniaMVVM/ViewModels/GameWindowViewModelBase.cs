@@ -1,4 +1,5 @@
 ﻿using Avalonia.Threading;
+using ChessModelLib;
 using ChineseChess_AvaloniaMVVM.Models;
 using GameCommons;
 using MsBox.Avalonia;
@@ -31,7 +32,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         protected GameWindowViewModelBase(MainWindowViewModel parent) : base(parent)
         {
             Parent = parent;
-            _boardUserControl = new ChessBoardUserControlViewModel(PostChessPieceMove);
+            _boardUserControl = new ChessBoardUserControlViewModel(PostChessPieceMove, parent.GameToCreate);
             SetTurnLabel();
             ToStartWindowCommand = ReactiveCommand.Create(ToStartWindow);
 

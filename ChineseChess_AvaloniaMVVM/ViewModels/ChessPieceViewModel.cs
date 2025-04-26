@@ -1,7 +1,5 @@
 using Avalonia.Media.Imaging;
-using ChineseChess_AvaloniaMVVM.Models;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
-using ChineseChess_AvaloniaMVVM.ViewModels.ChineseChess;
+using ChessModelLib;
 
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
 
@@ -14,17 +12,9 @@ public class ChessPieceViewModel : ViewModelBase
     public ChessPieceViewModel(ChessPieceBase chessPiece)
     {
         ChessPiece = chessPiece;
-        ChessPieceImage = GetChessPieceImage();
+        ChessPieceImage = chessPiece.GetChessPieceImage();
         Height = ChessPieceImage.PixelSize.Height;
         Width = ChessPieceImage.PixelSize.Width;
     }
-    protected Bitmap GetChessPieceImage()
-    {
-        if (ChessPiece is ChineseChessPieceBase chineseChessPiece)
-        {
-            Bitmap chessPieceImage = DrawChineseChessPiece.DrawImage(chineseChessPiece);
-            return chessPieceImage;
-        }
-        return null;
-    }
+
 }

@@ -1,9 +1,7 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
+﻿using Avalonia.Media.Imaging;
 using GameCommons;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
-namespace ChineseChess_AvaloniaMVVM.Models
+namespace ChessModelLib
 {
     public abstract class ChessPieceBase
     {
@@ -13,7 +11,6 @@ namespace ChineseChess_AvaloniaMVVM.Models
         public readonly Side Side;
         public bool CanMove { get => _Location.ChessBoard.CurrentPlayerTurn == Side; }
         CellBase _Location;
-        [JsonIgnore]
         public CellBase Location { get => _Location; }
         protected ChessPieceBase(Side side, CellBase cell)
         {
@@ -32,12 +29,14 @@ namespace ChineseChess_AvaloniaMVVM.Models
         }
         public override string ToString()
         {
-            return typeof(ChineseChessPieceBase).ToString();
+            return GetType().ToString();
         }
         public abstract IEnumerable<CellBase> FindValidMove();
         internal void SetLocation(CellBase cell)
         {
             _Location = cell;
         }
+        public abstract Bitmap GetChessPieceImage();
+
     }
 }

@@ -1,8 +1,9 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
+﻿using Avalonia.Media.Imaging;
+using ChessModelLib;
+using ChineseChessModelLib.ChessPiece.Factory;
 using GameCommons;
-using Newtonsoft.Json;
 using System.ComponentModel;
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
+namespace ChineseChessModelLib
 {
     public class ChineseChessCell : CellBase
     {
@@ -22,7 +23,6 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
                 AdvisorArea = false;
             }
         }
-        [JsonConstructor]
         public ChineseChessCell(bool advisorZone, Side side)
         {
             AdvisorArea = advisorZone;
@@ -59,6 +59,11 @@ namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
             {
                 return (ChineseChessPieceBase)this.ChessPiece;
             }
+        }
+        public override Bitmap GetBackgroundImage()
+        {
+            var bitmap = DrawChineseChessBoardCell.DrawChineseChessBoard(this);
+            return bitmap;
         }
     }
 }

@@ -1,8 +1,5 @@
-using Avalonia.Controls;
 using Avalonia.Media.Imaging;
-using ChineseChess_AvaloniaMVVM.Models;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess;
-using ChineseChess_AvaloniaMVVM.ViewModels.ChineseChess;
+using ChessModelLib;
 using ReactiveUI;
 using System.ComponentModel;
 namespace ChineseChess_AvaloniaMVVM.ViewModels;
@@ -45,7 +42,7 @@ public partial class CellViewModel : ViewModelBase
     public CellViewModel(CellBase cell, ChessBoardViewModel chessBoard) : base()
     {
         CellBase = cell;
-        BackgroundImage = GetBackgroundImage();
+        BackgroundImage = cell.GetBackgroundImage();
         Height = BackgroundImage.PixelSize.Height;
         Width = BackgroundImage.PixelSize.Width;
         _ChessPieceVm = null;
@@ -55,21 +52,12 @@ public partial class CellViewModel : ViewModelBase
     public CellViewModel() : base()
     {
         CellBase = null;
-        BackgroundImage = GetBackgroundImage();
-        Height = BackgroundImage.PixelSize.Height;
-        Width = BackgroundImage.PixelSize.Width;
+        BackgroundImage = null;
+        Height = 0;
+        Width = 0;
         _ChessPieceVm = null;
     }
-    private Bitmap GetBackgroundImage()
-    {
-        if (CellBase is ChineseChessCell chineseChessCell)
-        {
-            Image backgroundImage = new Image();
-            var bitmap = DrawChineseChessBoardCell.DrawChineseChessBoard(chineseChessCell);
-            return bitmap;
-        }
-        return null;
-    }
+
     private void SetChessPieceImage()
     {
         ChessPieceImage = _ChessPieceVm is null ? null : _ChessPieceVm.ChessPieceImage;

@@ -1,9 +1,8 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
+﻿using ChineseChessModelLib.ChessPiece.Factory;
+using ChineseChessModelLib.Enum;
 using GameCommons;
-using System.Collections.Generic;
 
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Type
+namespace ChineseChessModelLib.ChessPiece.Type
 {
     [ChessPieceAttr(ChessPieceType.Advisor)]
     public class Advisor : ChineseChessPieceBase

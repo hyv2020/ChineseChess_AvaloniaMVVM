@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
-using ChineseChess_AvaloniaMVVM.Models;
+using ChessModelLib;
 using ChineseChess_AvaloniaMVVM.ViewModels;
 using System.Diagnostics;
 
@@ -21,6 +21,11 @@ public partial class CellView : UserControl
         {
             var cell = chessBoardBackgroundImage.DataContext as CellViewModel;
             var board = cell.ChessBoard;
+            var activeGame = board.ActiveGame;
+            if (!activeGame)
+            {
+                return;
+            }
             board.ClearAllValidMoves();
             // Handle the background click event here
             // For example, you can clear the selected cell or perform some action
@@ -36,7 +41,11 @@ public partial class CellView : UserControl
         if (validMoveImage != null)
         {
             var destination = validMoveImage.DataContext as CellBase; // Assuming CellBase is your data model
-
+            var activeGame = destination.ChessBoard.ActiveGame;
+            if (!activeGame)
+            {
+                return;
+            }
             // Get the cell index from the rectangle's name
             // Perform some action with the cell index
             //Debug.WriteLine($"Cell clicked! X: {destination.X}, Y: {destination.Y}");

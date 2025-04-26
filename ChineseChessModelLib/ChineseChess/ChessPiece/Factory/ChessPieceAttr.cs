@@ -1,7 +1,6 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
-using System;
+﻿using ChineseChessModelLib.Enum;
 
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory
+namespace ChineseChessModelLib.ChessPiece.Factory
 {
     internal class ChessPieceAttr : Attribute
     {

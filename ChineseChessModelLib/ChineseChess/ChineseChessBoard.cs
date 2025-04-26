@@ -1,13 +1,12 @@
-﻿using ChineseChess_AvaloniaMVVM.Models.ChineseChess.ChessPiece.Factory;
-using ChineseChess_AvaloniaMVVM.Models.ChineseChess.Enum;
+﻿using ChessModelLib;
+using ChineseChessModelLib.ChessPiece.Factory;
+using ChineseChessModelLib.Enum;
 using GameCommons;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
 
-namespace ChineseChess_AvaloniaMVVM.Models.ChineseChess
+namespace ChineseChessModelLib
 {
     public class ChineseChessBoard : ChessBoardBase
     {
