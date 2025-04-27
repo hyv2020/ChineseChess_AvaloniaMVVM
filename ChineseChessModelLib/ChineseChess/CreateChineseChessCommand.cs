@@ -1,9 +1,9 @@
 ﻿using ChessModelLib;
 using System.ComponentModel;
 
-namespace ChineseChessModelLib
+namespace ChineseChessModelLib.ChineseChess
 {
-    public class CreateCommand : ICreateBoardCommand
+    public class CreateChineseChessCommand : ICreateBoardCommand
     {
         public string Name => "Chinese Chess";
 

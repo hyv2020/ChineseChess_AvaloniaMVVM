@@ -8,6 +8,7 @@ namespace ChineseChess_AvaloniaMVVM.Views
         public MainWindow()
         {
             InitializeComponent();
+            UtilOps.CheckSaveDirectory();
             UtilOps.ClearTempFolder();
         }
 

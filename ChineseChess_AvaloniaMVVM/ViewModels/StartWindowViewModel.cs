@@ -1,14 +1,12 @@
-﻿using Avalonia.Controls;
-using ChessModelLib;
+﻿using ChessModelLib;
 using ChineseChess_AvaloniaMVVM.Models;
+using ChineseChessModelLib.ChineseChess;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Input;
-
 namespace ChineseChess_AvaloniaMVVM.ViewModels
 {
     public partial class StartWindowViewModel : WindowViewModelBase
@@ -44,7 +42,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 
         private void LoadGame()
         {
-            var window = new Avalonia.Controls.Window
+            /*var window = new Avalonia.Controls.Window
             {
                 Width = 0,
                 Height = 0,
@@ -55,16 +53,19 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             var sp = window.StorageProvider;
             var folders = sp.TryGetFolderFromPathAsync(new Uri(Environment.CurrentDirectory + "/Assets/Dlls"));
             var result = folders.Result;
-            var getItems = result.GetItemsAsync().ToBlockingEnumerable();
+            var getItems = result.GetItemsAsync().ToBlockingEnumerable();*/
             var games = new List<ICreateBoardCommand>();
-            foreach (var item in getItems)
+            /*foreach (var item in getItems)
             {
                 var plugin = LoadPlugin(item.Path.LocalPath);
                 var commands = CreateCommands(plugin);
                 games.AddRange(commands);
             }
+            window.Hide();*/
+            games.Add(new CreateChineseChessCommand());
+
             Games = games;
-            window.Hide();
+
         }
         static Assembly LoadPlugin(string assemblyPath)
         {

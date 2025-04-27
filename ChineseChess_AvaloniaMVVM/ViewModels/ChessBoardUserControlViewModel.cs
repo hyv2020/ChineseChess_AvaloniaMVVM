@@ -34,7 +34,12 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             var board = gameToCreate.Execute(postChessPieceMove);
             _chessBoardVm = new ChessBoardViewModel(board);
         }
-
+        public ChessBoardUserControlViewModel()
+        {
+            // This constructor is used for design-time data
+            var board = new ChineseChessModelLib.ChineseChessBoard(null);
+            _chessBoardVm = new ChessBoardViewModel(board);
+        }
         public void ClearAllValidMoves()
         {
             _chessBoardVm.ClearAllValidMoves();
@@ -42,7 +47,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
 
         public void ClearBoard()
         {
-
             _chessBoardVm.ClearBoard();
         }
     }

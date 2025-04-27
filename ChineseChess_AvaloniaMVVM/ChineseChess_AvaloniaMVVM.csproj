@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChessModelLib\ChessModelLib.csproj" />
+    <ProjectReference Include="..\ChineseChessModelLib\ChineseChessModelLib.csproj" />
     <ProjectReference Include="..\GameClient\GameClient.csproj" />
     <ProjectReference Include="..\GameCommons\GameCommons.csproj" />
     <ProjectReference Include="..\GameServer\GameServer.csproj" />

@@ -56,7 +56,17 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public override void Reset()
         {
-
+            var vm = BoardUserControl.ChessBoardVm;
+            vm.ClearBoard();
+            vm.LoadGame();
+            vm.ActiveGame = true;
+            this.turnRecord.Clear();
+            this.currentTurn = 1;
+            this.host = false;
+            this.gameStarted = false;
+            this.ClientConnected = true;
+            this.sameGame = false;
+            Disconnect();
         }
 
         public override void UpdateUIPostMove(ChessBoardBase chessBoard)
@@ -155,6 +165,8 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             if (data as Turn != null)
             {
                 LoadTurn(data as Turn);
+                SetTurnLabel();
+                BoardUserControl.ChessBoardVm.ActiveGame = !CheckWinner(out Side side);
             }
             else if (int.TryParse(data.ToString(), out int clientCount))
             {
@@ -200,6 +212,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                     }
                 }
                 UpdatePlayerLabel();
+                SetTurnLabel();
             }
             Debug.WriteLine($"Observer Received data: {data}");
         }
@@ -255,6 +268,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         {
             if (playerSide == null)
             {
+                PlayerLabelText = $"Game haven't started";
                 return;
             }
             PlayerLabelText = $"You are {playerSide.GetDescription()}";
@@ -262,7 +276,14 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         private void Disconnect()
         {
-            client.Disconnect();
+            if (!host)
+            {
+                client.Disconnect();
+            }
+            else
+            {
+                listener.StopListening();
+            }
         }
         protected virtual void Dispose(bool disposing)
         {
