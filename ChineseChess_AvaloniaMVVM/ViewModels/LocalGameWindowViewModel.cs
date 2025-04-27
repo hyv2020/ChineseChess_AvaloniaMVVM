@@ -15,7 +15,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
     {
         public override string Message { get; } = "Local Game";
         List<Turn> _turnRecord = new();
-        int _currentTurnIndex = 0;
         public int SelectedTurnIndex { get { return _currentTurn; } set { this.RaiseAndSetIfChanged(ref _currentTurn, value); } }
         public List<Turn> TurnRecord
         {
@@ -62,7 +61,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             UtilOps.CheckSaveDirectory();
             UtilOps.ClearTempFolder();
             SelectedTurnIndex = 0;
-            var resetSide = TurnRecord[0].WhosTurn;
+            var resetSide = TurnRecord.Any() ? TurnRecord[0].WhosTurn : CurrentPlayerTurn;
             var boardState = vm.SaveGame();
             Turn currentTurnState = new Turn(vm.GameMode, _currentTurn, resetSide, boardState.ToList());
             currentTurnState.SaveToFile();

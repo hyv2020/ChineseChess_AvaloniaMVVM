@@ -80,7 +80,7 @@ namespace GameServer
             //data = Encoding.Default.GetBytes("Server");
             // recieve data from client
             int bytes = await stream.ReadAsync(data, 0, data.Length);
-            var clientData = data.FromByteArray();
+            object clientData = data.FromByteArray();
             NotifyObservers(data);
             Debug.WriteLine($"Received: {clientData}", "Server");
             return clientData;

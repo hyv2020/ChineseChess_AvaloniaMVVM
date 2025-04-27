@@ -253,6 +253,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         private void UpdatePlayerLabel(Side? playerSide = null)
         {
+            if (playerSide == null)
+            {
+                return;
+            }
             PlayerLabelText = $"You are {playerSide.GetDescription()}";
             this.RaisePropertyChanged(nameof(PlayerLabelText));
         }

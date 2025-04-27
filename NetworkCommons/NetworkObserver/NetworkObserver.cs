@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace NetworkCommons
+﻿namespace NetworkCommons
 {
     /// <summary>
     /// Observer for one to many relationships

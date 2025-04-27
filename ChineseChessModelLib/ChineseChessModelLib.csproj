@@ -16,6 +16,7 @@
   </ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if not exist $(SolutionDir)\ChineseChess_AvaloniaMVVM\Assets\Dlls\ mkdir $(SolutionDir)\ChineseChess_AvaloniaMVVM\Assets\Dlls\" />
 		<Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\ChineseChess_AvaloniaMVVM\Assets\Dlls\&quot; /Y /I /E" />
 	</Target>
 </Project>

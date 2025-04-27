@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using ChineseChess_AvaloniaMVVM.Models;
 
 namespace ChineseChess_AvaloniaMVVM.Views
 {
@@ -7,7 +8,7 @@ namespace ChineseChess_AvaloniaMVVM.Views
         public MainWindow()
         {
             InitializeComponent();
-
+            UtilOps.ClearTempFolder();
         }
 
     }

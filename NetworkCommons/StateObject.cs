@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-
+﻿using System.Runtime.Serialization.Formatters.Binary;
 namespace NetworkCommons
 {
     /// <summary>
@@ -12,19 +11,23 @@ namespace NetworkCommons
 
         public static byte[] ToByteArray(this object obj)
         {
-            if (obj == null)
-                throw new ArgumentNullException(nameof(obj), "The object cannot be null.");
-
-            // Use System.Text.Json to serialize the object to a byte array
-            return JsonSerializer.SerializeToUtf8Bytes(obj);
+            BinaryFormatter bf = new();
+            using (var ms = new MemoryStream())
+            {
+                bf.Serialize(ms, obj);
+                return ms.ToArray();
+            }
         }
-        public static object FromByteArray(this byte[] byteArray)
+        public static object FromByteArray(this byte[] data)
         {
-            if (byteArray == null || byteArray.Length == 0)
-                throw new ArgumentNullException(nameof(byteArray), "The byte array cannot be null or empty.");
-
-            // Deserialize the byte array back to the object
-            return JsonSerializer.Deserialize<object>(byteArray);
+            if (data == null)
+                return default;
+            BinaryFormatter bf = new();
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                object obj = bf.Deserialize(ms);
+                return obj;
+            }
         }
     }
 }

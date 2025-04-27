@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using ChessModelLib;
+using ChineseChess_AvaloniaMVVM.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         public string Greeting { get; } = "Welcome to Avalonia! Start Window";
         public ICommand ToLocalGameWindowCommand { get; }
         public ICommand ToNetworkGameWindowCommand { get; }
+        public ICommand QuitCommand { get; } = ReactiveCommand.Create(() => { UtilOps.ClearTempFolder(); Environment.Exit(0); });
         private List<ICreateBoardCommand> _Games = new();
 
         public List<ICreateBoardCommand> Games { get { return _Games; } set { this.RaiseAndSetIfChanged(ref _Games, value); } }
