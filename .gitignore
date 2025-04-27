@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /ChineseChess_AvaloniaMVVM/Assets/Dlls/ChineseChessModelLib.dll
+/Saves/temp
