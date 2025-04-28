@@ -21,15 +21,14 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         public string ConnectionStatusText { get; set; }
         public string PublicIPLabelText { get; set; }
         public override string Message { get; } = "Network Game";
-
+        string[] sides = Enum.GetNames(typeof(Side));
         public bool ClientConnected { get; set; } = true;
         AsynchronousTCPListener listener;
         AsynchronousClient client;
-        bool sameGame;
         bool gameStarted = false;
         bool host;
         Side playerSide;
-        Side moveSide;
+        string serverIP;
         int currentTurn = 1;
         List<Turn> turnRecord = new List<Turn>();
         public NetworkGameWindowViewModel(MainWindowViewModel parent) : base(parent)
@@ -48,7 +47,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             client.SendMessageAsync("1");
             client.RegisterObserver(this);
             UpdatePlayerLabel();
-            this.gameStarted = true;
+            this.gameStarted = false;
         }
         public NetworkGameWindowViewModel() : this(new MainWindowViewModel())
         {
@@ -56,17 +55,17 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         public override void Reset()
         {
-            var vm = BoardUserControl.ChessBoardVm;
-            vm.ClearBoard();
-            vm.LoadGame();
-            vm.ActiveGame = true;
-            this.turnRecord.Clear();
-            this.currentTurn = 1;
-            this.host = false;
-            this.gameStarted = false;
-            this.ClientConnected = true;
-            this.sameGame = false;
-            Disconnect();
+            /*            var vm = BoardUserControl.ChessBoardVm;
+                        vm.ClearBoard();
+                        vm.LoadGame();
+                        vm.ActiveGame = true;
+                        this.turnRecord.Clear();
+                        this.currentTurn = 1;
+                        this.host = false;
+                        this.gameStarted = false;
+                        this.ClientConnected = true;
+                        this.sameGame = false;
+                        Disconnect();*/
         }
 
         public override void UpdateUIPostMove(ChessBoardBase chessBoard)
@@ -77,23 +76,25 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         }
         private void HostInitialise()
         {
-            listener = new AsynchronousTCPListener(BoardUserControl.ChessBoardVm.GameMode);
-            listener.RegisterObserver(this);
-            ServerStartAsync();
             string localIP = NetworkCommons.IP.GetCurrentMachineIP();
             this.host = true;
-            this.moveSide = UtilOps.RandomStart();
+            var moveSide = UtilOps.RandomStart();
             var playerSide = UtilOps.RandomStart();
             this.playerSide = playerSide;
-            this.listener.hostStartSide = playerSide;
             UpdatePlayerLabel(playerSide);
             BoardUserControl.ChessBoardVm.LoadGame();
-            Turn startTurn = new Turn(BoardUserControl.ChessBoardVm.GameMode, this.currentTurn, this.moveSide, BoardUserControl.ChessBoardVm.SaveGame().ToList());
-            this.listener.hostStartTurn = startTurn;
-            SetTurnLabel();
+            Turn startTurn = new Turn(BoardUserControl.ChessBoardVm.GameMode, this.currentTurn, moveSide, BoardUserControl.ChessBoardVm.SaveGame().ToList());
+            BoardUserControl.CurrentPlayerTurn = moveSide;
             ConnectionStatusText = "Hosting at " + localIP;
             PublicIPLabelText = "Public IP: " + NetworkCommons.IP.GetPublicIpAddress();
             LoadTurn(startTurn);
+            SetTurnLabel();
+            BoardUserControl.ChessBoardVm.ActiveGame = false;
+            listener = new AsynchronousTCPListener(BoardUserControl.ChessBoardVm.GameMode);
+            this.listener.hostStartSide = playerSide;
+            this.listener.hostStartTurn = startTurn;
+            listener.RegisterObserver(this);
+            ServerStartAsync();
         }
         #region Network Management
 
@@ -118,13 +119,15 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             TryConnectAsync();
             async void TryConnectAsync()
             {
+                this.serverIP = serverIP;
                 try
                 {
                     // ip address of current dervice
-                    string localIP = NetworkCommons.IP.GetCurrentMachineIP();
                     client = new AsynchronousClient(serverIP, BoardUserControl.ChessBoardVm.GameMode);
                     if (!this.host)
                     {
+                        ConnectionStatusText = "Connecting to " + serverIP;
+                        this.RaisePropertyChanged(nameof(ConnectionStatusText));
                         //ConnectionStatusLabel.Text = "Joined " + serverIP;
                         //PublicIPLabel.Text = "Public IP: " + NetworkCommons.IP.GetPublicIpAddress();
                     }
@@ -151,12 +154,14 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                         }
                         else
                         {
+                            Parent.ToStartWindow();
                             client.Disconnect();
                             this.ClientConnected = false;
                             this.Dispose();
                         }
                     });
                 }
+
             }
         }
 
@@ -165,29 +170,29 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             if (data as Turn != null)
             {
                 LoadTurn(data as Turn);
+                UpdatePlayerLabel();
                 SetTurnLabel();
-                BoardUserControl.ChessBoardVm.ActiveGame = !CheckWinner(out Side side);
+                if (!CheckWinner(out Side winner))
+                {
+                    BoardUserControl.ChessBoardVm.ActiveGame = BoardUserControl.CurrentPlayerTurn == playerSide;
+                }
             }
             else if (int.TryParse(data.ToString(), out int clientCount))
             {
-                if (clientCount == 1 && this.sameGame && !this.gameStarted)
+                if (clientCount == 1 && !this.gameStarted)
                 {
                     this.gameStarted = true;
-                }
-            }
-            else if (data.ToString() == BoardUserControl.ChessBoardVm.GameMode && !this.gameStarted)
-            {
-                this.sameGame = true;
-                SendDataToServerAsync(BoardUserControl.ChessBoardVm.GameMode);
-            }
-            else if (data.ToString() != BoardUserControl.ChessBoardVm.GameMode && !this.gameStarted)
-            {
-                this.sameGame = false;
-                if (!this.host)
-                {
-                    Disconnect();
-                    this.ClientConnected = false;
-                    Dispose();
+                    var startMessage = MessageBoxManager.GetMessageBoxStandard("Game Start", "Have comes a new challenger!", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
+                    BoardUserControl.ChessBoardVm.ActiveGame = playerSide == BoardUserControl.CurrentPlayerTurn;
+                    SetTurnLabel();
+                    Dispatcher.UIThread.InvokeAsync(async () =>
+                    {
+                        var result = await startMessage.ShowAsync();
+                        if (result == MsBox.Avalonia.Enums.ButtonResult.Ok)
+                        {
+                            // Handle the OK button click
+                        }
+                    });
                 }
             }
             else if (data.ToString() == "0")
@@ -195,9 +200,10 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                 // client disconnected
                 this.ClientConnected = false;
                 ConnectionStatusText = "Client Disconnected";
+                this.RaisePropertyChanged(nameof(ConnectionStatusText));
                 PublicIPLabelText = "Public IP: " + NetworkCommons.IP.GetPublicIpAddress();
             }
-            else
+            else if (sides.Contains(data.ToString()))
             {
                 var recievedSide = (Side)Enum.Parse(typeof(Side), data.ToString());
                 if (!this.host)
@@ -211,8 +217,21 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                         this.playerSide = Side.Red;
                     }
                 }
-                UpdatePlayerLabel();
+                UpdatePlayerLabel(playerSide);
                 SetTurnLabel();
+            }
+            else if (data.ToString() == BoardUserControl.ChessBoardVm.GameMode && !this.gameStarted)
+            {
+            }
+            else if (data.ToString() != BoardUserControl.ChessBoardVm.GameMode && !this.gameStarted)
+            {
+                if (!this.host)
+                {
+                    Parent.ToStartWindow();
+                    Disconnect();
+                    this.ClientConnected = false;
+                    Dispose();
+                }
             }
             Debug.WriteLine($"Observer Received data: {data}");
         }
@@ -238,22 +257,14 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             BoardUserControl.ChessBoardVm.ClearBoard();
             BoardUserControl.ChessBoardVm.LoadGame(selectedTurn.BoardState);
             this.currentTurn = selectedTurn.TurnNumber;
-            this.moveSide = selectedTurn.WhosTurn;
+            BoardUserControl.CurrentPlayerTurn = selectedTurn.WhosTurn;
             // player on only use stuff on his/her turn
-            if (moveSide == playerSide)
-            {
-                BoardUserControl.ChessBoardVm.ActiveGame = true;
-            }
-            else
-            {
-                BoardUserControl.ChessBoardVm.ActiveGame = false;
-            }
             SetTurnLabel();
             selectedTurn.SaveToFile();
         }
         private async void SaveState()
         {
-            Turn currentTurnState = new Turn(BoardUserControl.ChessBoardVm.GameMode, this.currentTurn, this.moveSide, BoardUserControl.ChessBoardVm.SaveGame().ToList());
+            Turn currentTurnState = new Turn(BoardUserControl.ChessBoardVm.GameMode, this.currentTurn, BoardUserControl.CurrentPlayerTurn, BoardUserControl.ChessBoardVm.SaveGame().ToList());
             currentTurnState.SaveToFile();
             await SendDataToServerAsync(currentTurnState);
         }
@@ -263,6 +274,36 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             var updatedTurnRecord = this.turnRecord.Take(currentTurn + 1);
             this.turnRecord = updatedTurnRecord.ToList();
             this.currentTurn++;
+        }
+        public override void SetTurnLabel()
+        {
+            if (!this.gameStarted && BoardUserControl.ChessBoardVm.ActiveGame)
+            {
+                TurnLabelText = CurrentPlayerTurn.GetDescription() + " turn";
+            }
+            else
+            {
+                if (CheckWinner(out Side winner))
+                {
+                    TurnLabelText = winner.GetDescription() + " wins!";
+                }
+                else
+                {
+                    if (BoardUserControl.CurrentPlayerTurn == playerSide)
+                    {
+                        BoardUserControl.ChessBoardVm.ActiveGame = true;
+                    }
+                }
+            }
+            this.RaisePropertyChanged(nameof(TurnLabelText));
+            if (BoardUserControl.CurrentPlayerTurn == playerSide)
+            {
+                BoardUserControl.ChessBoardVm.ActiveGame = true;
+            }
+            else
+            {
+                BoardUserControl.ChessBoardVm.ActiveGame = false;
+            }
         }
         private void UpdatePlayerLabel(Side? playerSide = null)
         {

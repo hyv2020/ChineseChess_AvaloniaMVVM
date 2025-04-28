@@ -33,7 +33,6 @@
             <TextBlock x:Name="GameDescription" Text="{Binding GameDescription}" />
             <TextBlock x:Name="PlayerLabel" Text="{Binding PlayerLabelText}" />
             <TextBlock x:Name="ConectionStatus" Text="{Binding ConnectionStatusText}" />
-            <TextBlock x:Name="PublicIP" Text="{Binding PublicIPLabelText}" />
         </StackPanel>
         <Button
             Grid.Row="2"

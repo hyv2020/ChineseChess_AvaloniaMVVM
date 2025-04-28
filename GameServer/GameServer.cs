@@ -40,9 +40,12 @@ namespace GameServer
                     var clientCount = clients.Count.ToByteArray();
                     // tell second player start state
                     await RedirectToClientAsync(GameMode, client);
+                    Thread.Sleep(50);
                     await RedirectToClientAsync(clients.Count, client);
-                    await RedirectToClientAsync(hostStartTurn, client);
+                    Thread.Sleep(50);
                     await RedirectToClientAsync(hostStartSide.ToString(), client);
+                    Thread.Sleep(50);
+                    await RedirectToClientAsync(hostStartTurn, client);
                     // Start a new thread to handle communication
                     // with connected client
                     while (client.Connected)

@@ -90,7 +90,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             BoardUserControl.ChessBoardVm.ActiveGame = !thereIsWinner;
             return thereIsWinner;
         }
-        public void SetTurnLabel()
+        public virtual void SetTurnLabel()
         {
             if (BoardUserControl.ChessBoardVm.ActiveGame)
             {
