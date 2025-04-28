@@ -26,7 +26,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         AsynchronousTCPListener listener;
         AsynchronousClient client;
         bool gameStarted = false;
-        bool host;
+        bool host = false;
         Side playerSide;
         string serverIP;
         int currentTurn = 1;
@@ -173,7 +173,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             if (data as Turn != null)
             {
                 LoadTurn(data as Turn);
-                UpdatePlayerLabel(playerSide);
                 SetTurnLabel();
                 if (!CheckWinner(out Side winner))
                 {
@@ -196,6 +195,21 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                             // Handle the OK button click
                         }
                     });
+                    SendDataToServerAsync(clientCount);
+                }
+                else if (clientCount == 1 && this.gameStarted)
+                {
+                    this.gameStarted = true;
+                    var startMessage = MessageBoxManager.GetMessageBoxStandard("Game Start", "Game is starting...", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
+                    Dispatcher.UIThread.InvokeAsync(async () =>
+                    {
+                        var result = await startMessage.ShowAsync();
+                        if (result == MsBox.Avalonia.Enums.ButtonResult.Ok)
+                        {
+                            // Handle the OK button click
+                        }
+                    });
+                    BoardUserControl.ChessBoardVm.ActiveGame = playerSide == BoardUserControl.CurrentPlayerTurn;
                 }
             }
             else if (data.ToString() == "0")
@@ -221,7 +235,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                     }
                 }
                 UpdatePlayerLabel(playerSide);
-                SetTurnLabel();
             }
             else if (data.ToString() == BoardUserControl.ChessBoardVm.GameMode && !this.gameStarted)
             {
