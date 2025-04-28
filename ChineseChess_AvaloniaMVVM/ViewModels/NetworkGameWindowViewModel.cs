@@ -71,6 +71,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
         public override void UpdateUIPostMove(ChessBoardBase chessBoard)
         {
             this.EndTurn();
+            BoardUserControl.ChessBoardVm.ActiveGame = false;
             this.SaveState();
             UtilOps.DeleteTempFilesAfterThisTurn(this.currentTurn);
         }
@@ -93,6 +94,8 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             listener = new AsynchronousTCPListener(BoardUserControl.ChessBoardVm.GameMode);
             this.listener.hostStartSide = playerSide;
             this.listener.hostStartTurn = startTurn;
+            this.gameStarted = true;
+
             listener.RegisterObserver(this);
             ServerStartAsync();
         }
@@ -170,7 +173,7 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             if (data as Turn != null)
             {
                 LoadTurn(data as Turn);
-                UpdatePlayerLabel();
+                UpdatePlayerLabel(playerSide);
                 SetTurnLabel();
                 if (!CheckWinner(out Side winner))
                 {
@@ -283,16 +286,23 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
             }
             else
             {
-                if (CheckWinner(out Side winner))
+                try
                 {
-                    TurnLabelText = winner.GetDescription() + " wins!";
-                }
-                else
-                {
-                    if (BoardUserControl.CurrentPlayerTurn == playerSide)
+                    if (CheckWinner(out Side winner))
                     {
-                        BoardUserControl.ChessBoardVm.ActiveGame = true;
+                        TurnLabelText = winner.GetDescription() + " wins!";
                     }
+                    else
+                    {
+                        if (BoardUserControl.CurrentPlayerTurn == playerSide)
+                        {
+                            BoardUserControl.ChessBoardVm.ActiveGame = true;
+                        }
+                    }
+                }
+                catch
+                {
+
                 }
             }
             this.RaisePropertyChanged(nameof(TurnLabelText));
