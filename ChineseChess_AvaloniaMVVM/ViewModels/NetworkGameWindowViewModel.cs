@@ -164,7 +164,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                         }
                     });
                 }
-
             }
         }
 
@@ -195,21 +194,6 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                             // Handle the OK button click
                         }
                     });
-                    SendDataToServerAsync(clientCount);
-                }
-                else if (clientCount == 1 && this.gameStarted)
-                {
-                    this.gameStarted = true;
-                    var startMessage = MessageBoxManager.GetMessageBoxStandard("Game Start", "Game is starting...", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info);
-                    Dispatcher.UIThread.InvokeAsync(async () =>
-                    {
-                        var result = await startMessage.ShowAsync();
-                        if (result == MsBox.Avalonia.Enums.ButtonResult.Ok)
-                        {
-                            // Handle the OK button click
-                        }
-                    });
-                    BoardUserControl.ChessBoardVm.ActiveGame = playerSide == BoardUserControl.CurrentPlayerTurn;
                 }
             }
             else if (data.ToString() == "0")
@@ -233,6 +217,11 @@ namespace ChineseChess_AvaloniaMVVM.ViewModels
                     {
                         this.playerSide = Side.Red;
                     }
+                    SendDataToServerAsync(this.playerSide.ToString());
+                }
+                else
+                {
+                    BoardUserControl.ChessBoardVm.ActiveGame = playerSide == BoardUserControl.CurrentPlayerTurn;
                 }
                 UpdatePlayerLabel(playerSide);
             }
